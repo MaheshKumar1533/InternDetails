@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jia2pde3qm)oo!vr9oro2_-l^z4)=*7k@lt1507sn6mtu+pza5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'internships',
 ]
 
 MIDDLEWARE = [
@@ -74,10 +75,7 @@ WSGI_APPLICATION = 'InternDetails.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': {'ENGINE':'django','NAME':'interdetail','ENFORCE_SCHEMA'=False,'CLIENT':{'host':'mongodb+srv://maheshkumarvmk0:7KJcIM5eOg1wf1aL@clusterfill.fsqlxjm.mongodb.net/'}}
 }
 
 
