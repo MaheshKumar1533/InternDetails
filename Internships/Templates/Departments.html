@@ -9,265 +9,111 @@
 				margin: 0;
 				padding: 0;
 			}
+			body {
+				background-image: url("background.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
 			header {
 				height: 15vh;
 				width: 100vw;
-				background-color: yellow;
+				background-color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.logo {
+				height: fit-content;
+				width: fit-content;
+			}
+			main {
+				display: grid;
+				width: 100vw;
+				margin: 20px;
+				grid-template-columns: 20% 80%;
+				grid-column-gap: 20px;
+				overflow: hidden;
+			}
+			.leftbar {
+				height: 100%;
+				background-color: rgb(71, 27, 27);
+				border-radius: 20px;
+			}
+			.rightbar {
+				width: 70vw;
+			}
+			.rightbar ul {
+				padding: 30px;
+				display: grid;
+				grid-template-columns: auto auto auto;
+				background-color: rgba(245, 245, 220, 0.527);
+				border-radius: 20px;
+			}
+			li {
+				list-style-type: none;
+			}
+			.department {
+				display: flex;
+				align-items: center;
 			}
 		</style>
 	</head>
 	<body>
-		<header><img src="" alt="" class="logo" /></header>
+		<header><img src="logo.jpg" alt="" class="logo" /></header>
 		<main>
 			<div class="leftbar">
 				<img src="" alt="" class="adminlogo" />
 				<div class="details"></div>
 			</div>
 			<div class="rightbar">
-				<ul class="d-flex course-item justify-content-start flex-start">
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/civil-icon.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - CIVIL</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+				<ul>
+					<li class="department">
+						<img src="civil.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/computer-science-engi-icon.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - CSE</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="cse.png" alt="" class="icon" /><span
+							class="dept"
+							>CSE</span
+						>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/001cef80bed2b297a9b3e62f633aaf2d.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - CST</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="cst.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/65b5f807ffb65e7a76bc409d38661bee.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - CSE (AI, ML, DS, CS &amp; CN)</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="cse-sub.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/b6ad2df951b17fecf7ba00f4786f5bb4.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - ECE</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="ece.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/electronics-engineering.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - EEE</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="eee.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/mechanic-engineering.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>B.Tech - MECH</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="mech.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/mba-icon.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>MBA</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="mba.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
-
-					<li class="">
-						<a href="progarmme" class="d-flex" aria-label="Mits">
-							<div class="course-img">
-								<img
-									src="https://mits.ac.in/public/uploads/courses/somuter-science-icon.png"
-									alt="Courses"
-								/>
-							</div>
-
-							<div class="course-txt">
-								<h3 class="course-title"></h3>
-								<h3>MCA</h3>
-
-								<span class="view-more"
-									>view more
-									<i
-										class="fa-solid fa-arrow-right-long"
-										aria-hidden="true"
-									></i
-								></span>
-
-								<!--<a href="progarmmes" class="course-more-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
-							</div>
-						</a>
+					<li class="department">
+						<img src="mca.png" alt="" class="icon" /><span
+							class="dept"
+						></span>
 					</li>
 				</ul>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
-				<div class="department"></div>
 			</div>
 		</main>
 	</body>
