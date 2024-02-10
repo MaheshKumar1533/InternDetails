@@ -5,14 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>InternDetails - Departments</title>
 		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap");
 			* {
 				margin: 0;
 				padding: 0;
+				font-family: "Kanit";
 			}
 			body {
 				background-image: url("background.jpg");
 				background-repeat: no-repeat;
 				background-size: cover;
+				width: 100vw;
 			}
 			header {
 				height: 15vh;
@@ -28,9 +31,9 @@
 			}
 			main {
 				display: grid;
-				width: 100vw;
+				/* width: 100vw; */
 				margin: 20px;
-				grid-template-columns: 20% 80%;
+				grid-template-columns: 20% 70%;
 				grid-column-gap: 20px;
 				overflow: hidden;
 			}
@@ -46,8 +49,9 @@
 				padding: 30px;
 				display: grid;
 				grid-template-columns: auto auto auto;
-				background-color: rgba(245, 245, 220, 0.527);
+				background-color: rgba(245, 245, 220, 0.5);
 				border-radius: 20px;
+				overflow: hidden;
 			}
 			li {
 				list-style-type: none;
@@ -55,6 +59,14 @@
 			.department {
 				display: flex;
 				align-items: center;
+				background-color: rgba(245, 245, 220, 0.7);
+				padding: 20px;
+				margin: 10px;
+			}
+			.dept {
+				color: rgb(141, 16, 16);
+				font-size: 50px;
+				margin-left: 10px;
 			}
 		</style>
 	</head>
