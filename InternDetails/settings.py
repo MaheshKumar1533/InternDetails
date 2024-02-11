@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'internships',
+    'Internships',
 ]
 
 MIDDLEWARE = [
@@ -48,10 +48,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'InternDetails.urls'
-
+STATIC_ROOT =   BASE_DIR / 'FileSlogo'
+STATIC_URL = 'static/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -75,7 +77,10 @@ WSGI_APPLICATION = 'InternDetails.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {'ENGINE':'django','NAME':'interdetail','ENFORCE_SCHEMA'=False,'CLIENT':{'host':'mongodb+srv://maheshkumarvmk0:7KJcIM5eOg1wf1aL@clusterfill.fsqlxjm.mongodb.net/'}}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 

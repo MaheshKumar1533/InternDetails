@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,7 +15,7 @@
 				font-family: "Kanit";
 			}
 			body {
-				background-image: url("background.jpg");
+				background-image: url("{% static 'background.jpg' %}");
 				background-repeat: no-repeat;
 				background-size: cover;
 				width: 100vw;
@@ -130,10 +131,15 @@
 				cursor: pointer;
 				box-shadow: 0px 0px 5px 5px rgba(245, 245, 220, 0.4);
 			}
+			a {
+				text-decoration: none;
+			}
 		</style>
 	</head>
 	<body>
-		<header><img src="logo.jpg" alt="" class="logo" /></header>
+		<header>
+			<img src="{% static 'logo.jpg' %}" alt="" class="logo" />
+		</header>
 		<main>
 			<div class="leftbar">
 				<div
@@ -158,62 +164,92 @@
 				<button class="logout">Logout</button>
 			</div>
 			<ul class="rightbar">
-				<li class="department">
-					<img src="cse.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">CSE</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="civil.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">CIVIL</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="cst.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">CST</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="cse-sub.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept" style="font-size: 30px">
-							CSE<br />(AI,DS,CS)
+				<a href="cse">
+					<li class="department">
+						<img src="{% static 'cse.png' %}" alt="" class="icon" />
+						<div class="departmentdetails">
+							<div class="dept">CSE</div>
 						</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="ece.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">ECE</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="eee.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">EEE</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="mech.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">MECH</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="mba.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">MBA</div>
-					</div>
-				</li>
-				<li class="department">
-					<img src="mca.png" alt="" class="icon" />
-					<div class="departmentdetails">
-						<div class="dept">MCA</div>
-					</div>
-				</li>
+					</li>
+				</a>
+				<a href="civil">
+					<li class="department">
+						<img
+							src="{% static 'civil.png' %}"
+							alt=""
+							class="icon"
+						/>
+						<div class="departmentdetails">
+							<div class="dept">CIVIL</div>
+						</div>
+					</li>
+				</a>
+				<a href="cst">
+					<li class="department">
+						<img src="{% static 'cst.png' %}" alt="" class="icon" />
+						<div class="departmentdetails">
+							<div class="dept">CST</div>
+						</div>
+					</li>
+				</a>
+				<a href="cse-sub">
+					<li class="department">
+						<img
+							src="{% static 'cse-sub.png' %}"
+							alt=""
+							class="icon"
+						/>
+						<div class="departmentdetails">
+							<div class="dept" style="font-size: 30px">
+								CSE<br />(AI,DS,CS)
+							</div>
+						</div>
+					</li>
+				</a>
+				<a href="ece">
+					<li class="department">
+						<img src="{% static 'ece.png' %}" alt="" class="icon" />
+						<div class="departmentdetails">
+							<div class="dept">ECE</div>
+						</div>
+					</li>
+				</a>
+				<a href="eee">
+					<li class="department">
+						<img src="{% static 'eee.png' %}" alt="" class="icon" />
+						<div class="departmentdetails">
+							<div class="dept">EEE</div>
+						</div>
+					</li>
+				</a>
+				<a href="mech">
+					<li class="department">
+						<img
+							src="{% static 'mech.png' %}"
+							alt=""
+							class="icon"
+						/>
+						<div class="departmentdetails">
+							<div class="dept">MECH</div>
+						</div>
+					</li>
+				</a>
+				<a href="mba">
+					<li class="department">
+						<img src="{% static 'mba.png' %}" alt="" class="icon" />
+						<div class="departmentdetails">
+							<div class="dept">MBA</div>
+						</div>
+					</li>
+				</a>
+				<a href="mca">
+					<li class="department">
+						<img src="{% static 'mca.png' %}" alt="" class="icon" />
+						<div class="departmentdetails">
+							<div class="dept">MCA</div>
+						</div>
+					</li>
+				</a>
 			</ul>
 		</main>
 	</body>
