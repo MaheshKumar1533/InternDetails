@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}{% endblock %}</title>
+		<style>
+			body {
+				background-image: url("{% static 'background.jpg' %}");
+				background-repeat: no-repeat;
+				background-size: cover;
+				width: 100vw;
+			}
+		</style>
+		{% block style %}{% endblock %}
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
+	<body>
+		<header>
+			<img src="{% static 'logo.jpg' %}" alt="" class="logo" />
+		</header>
+		{% block content %} {% endblock %}
+	</body>
+</html>
