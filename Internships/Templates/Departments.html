@@ -22,10 +22,10 @@ Departments
 			<i class="bi bi-person-fill person"></i>
 		</div>
 		<div class="details">
-			<div class="detailsname">Dr. C. Yuvaraj</div>
+			<div class="detailsname">{{ User.first_name }}</div>
 			<div class="detailsdesignation">Principal</div>
 		</div>
-		<button class="logout">Logout</button>
+		<a href="{% url 'login' %}" class="logout">Logout</a>
 	</div>
 	<ul class="rightbar">
 		<a href="cse">

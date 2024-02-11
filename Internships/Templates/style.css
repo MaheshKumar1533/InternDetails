@@ -105,6 +105,7 @@ i {
 .logout {
 	color: rgb(71, 27, 27);
 	font-size: 30px;
+	text-align: center;
 	font-family: "Roboto";
 	width: 60%;
 	background-color: rgb(245, 245, 220);

@@ -1,14 +1,14 @@
-<!-- {% load static %} -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Login</title>
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
 		<style>
 			body {
-				background-image: url("background.jpg");
+				background-image: url("{% static 'background.jpg' %}");
 				background-repeat: no-repeat;
 				background-size: cover;
 				width: 100vw;
@@ -78,11 +78,16 @@
 					0 0 3px 3px rgba(70, 19, 4, 0.4);
 				cursor: pointer;
 			}
+			.authentication{
+				color: red;
+				font: 25px;
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body>
 		<header>
-			<img src="logo.jpg" alt="" class="logo" />
+			<img src="{% static 'logo.jpg' %}" alt="" class="logo" />
 		</header>
 		<main>
 			<div class="loginbar">
@@ -90,7 +95,13 @@
 				<div class="profile">
 					<i class="bi bi-person-fill person"></i>
 				</div>
+				{% if authentication == 1 %}
+				<div class="authentication">
+					Authentication Failed!
+				</div>
+				{% endif %}
 				<form action="" method="post">
+					{% csrf_token %}
 					<input
 						type="text"
 						name="username"
@@ -98,7 +109,7 @@
 						placeholder="Username"
 					/>
 					<input
-						type="text"
+						type="password"
 						name="password"
 						id="password"
 						placeholder="Password"
