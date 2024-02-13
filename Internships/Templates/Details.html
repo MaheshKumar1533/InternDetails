@@ -7,10 +7,12 @@
 		<title>CSE</title>
 		<style>
 			@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+			@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 			* {
 				margin: 0;
 				padding: 0;
-				font-family: "Kanit";
+				/* font-family: "Kanit"; */
 			}
 			body {
 				background-image: url("background.jpg");
@@ -50,9 +52,10 @@
 			}
 			.rightbar {
 				padding: 20px;
-				display: grid;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 				border-radius: 20px;
-				grid-template-columns: 33% 33% 33%;
 				background-color: rgba(245, 245, 220, 0.5);
 				overflow: hidden;
 			}
@@ -110,6 +113,82 @@
 				width: 70%;
 				border-radius: 10px;
 			}
+			.details {
+				display: flex;
+				background-color: rgba(245, 245, 220, 0.7);
+				border: 2px solid rgb(245, 245, 220);
+				box-shadow: 0 0 5px 5px rgba(245, 245, 220, 0.7),
+					0 0 10px 10px rgba(70, 19, 4, 0.4);
+				padding: 15px;
+				border-radius: 20px;
+				min-width: 60%;
+				align-items: center;
+				justify-content: center;
+				gap: 5%;
+			}
+			.profilepic {
+				height: 18vh;
+				width: 18vh;
+				border-radius: 50%;
+			}
+			.studetails {
+				font-size: 25px;
+				font-family: "Kanit";
+			}
+			.internships {
+				color: rgb(70, 19, 4);
+				height: 100%;
+				width: 100%;
+				background-color: rgba(245, 245, 220, 0.7);
+				border: 2px solid rgb(70, 19, 4);
+				margin-top: 20px;
+				border-radius: 20px;
+				display: flex;
+				flex-direction: column;
+				overflow-y: scroll;
+			}
+			.internship {
+				display: flex;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+			}
+			.left {
+				height: 100%;
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				padding-left: 30px;
+				justify-content: space-evenly;
+			}
+			.internshipname {
+				font-family: "Inter";
+				font-size: 45px;
+			}
+			.internshipsdate {
+				font-size: 40px;
+			}
+
+			.internshipedate {
+				font-size: 40px;
+			}
+			.internshiptype {
+				font-size: 40px;
+			}
+			.right {
+				height: 100%;
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			.internshipphoto {
+				height: 90%;
+				width: 90%;
+				padding: 5px;
+				border: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -150,7 +229,58 @@
 					</div>
 				</div>
 			</div>
-			<div class="rightbar">Hello</div>
+			<div class="rightbar">
+				<div class="details">
+					<img src="image.jpg" class="profilepic" />
+					<div class="studetails">
+						<div class="stunama">Name : Amarnath</div>
+						<div class="sturollno">Roll No : 22691a05b5</div>
+						<div class="stubranch">Branch : CSE</div>
+					</div>
+				</div>
+				<div class="internships">
+					<div class="internship">
+						<div class="left">
+							<div class="internshipname">PYTHON PROGRAMMING</div>
+							<div class="internshipedate">
+								Organisation : MotionCut
+							</div>
+							<div class="internshipsdate">
+								Start Date : 05-01-2024
+							</div>
+							<div class="internshipedate">
+								End Date : 02-02-2024
+							</div>
+							<div class="internshiptype">Type : Remote</div>
+						</div>
+						<div class="right">
+							<img src="internship.jpg" class="internshipphoto" />
+						</div>
+					</div>
+					<hr />
+					<div class="internship">
+						<div class="left">
+							<div class="internshipname">PYTHON PROGRAMMING</div>
+							<div class="internshipedate">
+								Organisation : MotionCut
+							</div>
+							<div class="internshipsdate">
+								Start Date : 05-01-2024
+							</div>
+							<div class="internshipedate">
+								End Date : 02-02-2024
+							</div>
+							<div class="internshiptype">Type : Remote</div>
+						</div>
+						<div class="right">
+							<img
+								src="Certificate.jpg"
+								class="internshipphoto"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
 		</main>
 	</body>
 </html>
