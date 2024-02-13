@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}
+Departments
+{% endblock %} 
+{% block style %}
+<style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .icon {
+      font-size: 5rem;
+      color: #dc3545; /* Bootstrap danger color */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+ <h1>Sorry, you don't have access to this page.</h1>
+
+<div><a href = "{% url 'login' %}">
+    
+</a></div>
+{% endblock %}

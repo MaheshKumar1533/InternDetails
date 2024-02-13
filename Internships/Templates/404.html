@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body>
-		<h1>ERROR !!</h1>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error - Page Not Found</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .error-container {
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        h1 {
+            font-size: 100px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>404 <i class="bi bi-emoji-frown"></i></h1>
+        <p>Sorry, the page you are looking for could not be found.</p>
+        <a href="{% url 'login' %}">Go back to home <i class="bi bi-house"></i></a>
+    </div>
+
+    <!-- Bootstrap Icons Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/bootstrap-icons.min.js"></script>
+</body>
 </html>

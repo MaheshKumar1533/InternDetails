@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import login_required
 def departments(request):
     return render(request, "Departments.html")
 
+<<<<<<< HEAD
 def login(request, context={'authentication':0}):
+=======
+
+def login(request,context={'authentication':0}):
+>>>>>>> 1bec60682f16be1509e1e6fa98c6607c5d6416c5
     user = request.POST.get("username")
     password = request.POST.get("password")
     User =authenticate(username=user,password =password)
@@ -20,5 +25,10 @@ def login(request, context={'authentication':0}):
     else:
         print("Failed")
 
+<<<<<<< HEAD
 def department(request):
     return render(request, "Details.html")
+=======
+def noAccess(request):
+    return render(request,"noAccess.html")
+>>>>>>> 1bec60682f16be1509e1e6fa98c6607c5d6416c5

@@ -21,6 +21,7 @@ Departments {% endblock %} {% block leftbar %}
 		HoD <br />
 		Dept of CSE
 	</div>
+<<<<<<< HEAD
 </div>
 <a href="{% url 'login' %}" class="logout">Logout</a>
 {% endblock %} {% block rightbar %}
@@ -96,4 +97,83 @@ Departments {% endblock %} {% block leftbar %}
 		</div>
 	</li>
 </a>
+=======
+	<ul class="rightbar">
+		<a href="cse">
+			<li class="department">
+				<img src="{% static 'cse.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">CSE</div>
+				</div>
+			</li>
+		</a>
+		<a href="{% url 'noAccess' %}">
+			<li class="department">
+				<img src="{% static 'civil.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">CIVIL</div>
+				</div>
+			</li>
+		</a>
+		<a href="cst">
+			<li class="department">
+				<img src="{% static 'cst.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">CST</div>
+				</div>
+			</li>
+		</a>
+		<a href="cse-sub">
+			<li class="department">
+				<img src="{% static 'cse-sub.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept" style="font-size: 30px">
+						CSE<br />(AI,DS,CS)
+					</div>
+				</div>
+			</li>
+		</a>
+		<a href="ece">
+			<li class="department">
+				<img src="{% static 'ece.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">ECE</div>
+				</div>
+			</li>
+		</a>
+		<a href="eee">
+			<li class="department">
+				<img src="{% static 'eee.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">EEE</div>
+				</div>
+			</li>
+		</a>
+		<a href="mech">
+			<li class="department">
+				<img src="{% static 'mech.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">MECH</div>
+				</div>
+			</li>
+		</a>
+		<a href="mba">
+			<li class="department">
+				<img src="{% static 'mba.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">MBA</div>
+				</div>
+			</li>
+		</a>
+		<a href="mca">
+			<li class="department">
+				<img src="{% static 'mca.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">MCA</div>
+				</div>
+			</li>
+		</a>
+	</ul>
+</main>
+>>>>>>> 1bec60682f16be1509e1e6fa98c6607c5d6416c5
 {% endblock %}
