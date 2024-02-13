@@ -1,15 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from .models import DeptUser, depts
+from .models import DeptUser, depts,student
 
 # Create your views here.
+
+User = 0
 
 @login_required
 def departments(request):
     return render(request, "Departments.html")
 
 def login(request, context={'authentication':0}):
+    global User
     user = request.POST.get("username")
     password = request.POST.get("password")
     User =authenticate(username=user,password =password)
@@ -28,4 +31,7 @@ def noAccess(request):
     return render(request,"noAccess.html")
 
 def Details(request):
-    return render(request,"Details.html")
+    global User
+    Students = student.objects.filter(dept = User.dept)
+    print(Students)
+    return render(request,"Details.html",context ={'User':User,'Students':Students})

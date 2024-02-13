@@ -211,21 +211,9 @@
 						</button>
 					</div>
 					<div class="rollnos">
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
-						<div class="rollno">22691a05b5</div>
+						{% for x in Students %}
+						<div class="rollno">{{x.rollno}}</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
