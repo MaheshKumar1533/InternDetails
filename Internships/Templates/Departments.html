@@ -23,20 +23,34 @@ Departments
 		</div>
 		<div class="details">
 			<div class="detailsname">{{ User.first_name }}</div>
-			<div class="detailsdesignation">HoD <br> Dept of CSE</div>
+			<div class="detailsdesignation">HoD <br> Dept of {{User.dept}}</div>
 		</div>
 		<a href="{% url 'login' %}" class="logout">Logout</a>
 	</div>
 	<ul class="rightbar">
-		<a href="cse">
+
+		{% for i in departments %}
+		{% if User.dept == i.dept %}
+		<a href="{% url 'Details' %}">
 			<li class="department">
-				<img src="{% static 'cse.png' %}" alt="" class="icon" />
+				<img src="{% static '{{i.dept}}.png' %}" alt="" class="icon" />
 				<div class="departmentdetails">
-					<div class="dept">CSE</div>
+					<div class="dept">{{User.dept}}</div>
 				</div>
 			</li>
 		</a>
+		{% else %}
 		<a href="{% url 'noAccess' %}">
+			<li class="department">
+				<img src="{% static '{{ i.dept }}.png' %}" alt="" class="icon" />
+				<div class="departmentdetails">
+					<div class="dept">{{ i.dept }}</div>
+				</div>
+			</li>
+		</a>
+		{% endif %}
+		{% endfor %}
+		<!-- <a href="">
 			<li class="department">
 				<img src="{% static 'civil.png' %}" alt="" class="icon" />
 				<div class="departmentdetails">
@@ -101,7 +115,7 @@ Departments
 					<div class="dept">MCA</div>
 				</div>
 			</li>
-		</a>
+		</a> -->
 	</ul>
 </main>
 {% endblock %}

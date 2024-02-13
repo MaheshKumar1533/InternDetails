@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from .models import DeptUser, depts
+
 # Create your views here.
 
 @login_required
@@ -15,7 +17,7 @@ def login(request,context={'authentication':0}):
     if user==None or password==None:
         return render(request, "login.html")
     if User is not None:
-        return render(request, "departments.html", context={'User':User})
+        return render(request, "departments.html", context={'User':User, 'departments':depts.objects.all().values()})
     elif context['authentication']==0:
         return render(request, "login.html", context={'authentication':1})
     else:
@@ -23,3 +25,6 @@ def login(request,context={'authentication':0}):
 
 def noAccess(request):
     return render(request,"noAccess.html")
+
+def Details(request):
+    return render(request,"Details.html")
