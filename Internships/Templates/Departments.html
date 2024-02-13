@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "master.html" %}
 {% load static %}
 {% block title %}
@@ -26,7 +27,108 @@ Departments
 			<div class="detailsdesignation">HoD <br> Dept of {{User.dept}}</div>
 		</div>
 		<a href="{% url 'login' %}" class="logout">Logout</a>
+=======
+{% extends "dashboardtemplate.html" %} {% load static %} {% block title %}
+Departments {% endblock %} {% block leftbar %}
+<div
+	class="detailsname"
+	style="
+		font-size: 50px;
+		font-family: 'Josefin Sans';
+		text-decoration: underline;
+		color: rgb(245, 245, 220);
+		font-weight: bolder;
+	"
+>
+	ADMIN
+</div>
+<div class="profile">
+	<i class="bi bi-person-fill person"></i>
+</div>
+<div class="details">
+	<div class="detailsname">{{ User.first_name }}</div>
+	<div class="detailsdesignation">
+		HoD <br />
+		Dept of CSE
+>>>>>>> c0c822cceca5d9bbe30a89aab0d60df9c7b80bf5
 	</div>
+<<<<<<< HEAD
+</div>
+<a href="{% url 'login' %}" class="logout">Logout</a>
+{% endblock %} {% block rightbar %}
+<a href="{% url 'department' %}">
+	<li class="department">
+		<img src="{% static 'cse.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">CSE</div>
+		</div>
+	</li>
+</a>
+<a href="civil">
+	<li class="department">
+		<img src="{% static 'civil.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">CIVIL</div>
+		</div>
+	</li>
+</a>
+<a href="cst">
+	<li class="department">
+		<img src="{% static 'cst.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">CST</div>
+		</div>
+	</li>
+</a>
+<a href="cse-sub">
+	<li class="department">
+		<img src="{% static 'cse-sub.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept" style="font-size: 30px">CSE<br />(AI,DS,CS)</div>
+		</div>
+	</li>
+</a>
+<a href="ece">
+	<li class="department">
+		<img src="{% static 'ece.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">ECE</div>
+		</div>
+	</li>
+</a>
+<a href="eee">
+	<li class="department">
+		<img src="{% static 'eee.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">EEE</div>
+		</div>
+	</li>
+</a>
+<a href="mech">
+	<li class="department">
+		<img src="{% static 'mech.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">MECH</div>
+		</div>
+	</li>
+</a>
+<a href="mba">
+	<li class="department">
+		<img src="{% static 'mba.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">MBA</div>
+		</div>
+	</li>
+</a>
+<a href="mca">
+	<li class="department">
+		<img src="{% static 'mca.png' %}" alt="" class="icon" />
+		<div class="departmentdetails">
+			<div class="dept">MCA</div>
+		</div>
+	</li>
+</a>
+=======
 	<ul class="rightbar">
 
 		{% for i in departments %}
@@ -118,4 +220,5 @@ Departments
 		</a> -->
 	</ul>
 </main>
+>>>>>>> 1bec60682f16be1509e1e6fa98c6607c5d6416c5
 {% endblock %}
