@@ -6,6 +6,7 @@ class DeptUser(AbstractUser):
     
     def __str__(self) -> str:
         return self.username
+
 class depts(models.Model):
     dept = models.CharField(max_length=30)
     def __str__(self):
@@ -16,7 +17,10 @@ class student(models.Model):
     rollno = models.CharField(max_length=30,primary_key=True,null=False)
     year=models.IntegerField()
     dept=models.CharField(max_length=30)
-    photo = models.ImageField(upload_to='imagesstudent/')
+    photo = models.ImageField(upload_to='imagesstudent/',
+    blank=True,
+                                   default='',
+                                   null=True)
     def __str__(self):
         return self.rollno
 
@@ -26,7 +30,7 @@ class internships(models.Model):
     internshipName = models.CharField(max_length=30)
     sdate = models.DateField()
     edate = models.DateField()
-    type = models.CharField(max_length=30)
+    intern_type = models.CharField(max_length=30)
     certificate = models.ImageField(upload_to='certificates/')
     def __str__(self):
         return self.internId
