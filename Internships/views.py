@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from .models import DeptUser, depts,student
+from .models import DeptUser, depts,student,internships
+from .forms import StudentForm
 
 # Create your views here.
 
@@ -34,4 +35,15 @@ def Details(request):
     global User
     Students = student.objects.filter(dept = User.dept)
     print(Students)
-    return render(request,"Details.html",context ={'User':User,'Students':Students})
+    return render(request,"Details.html",context ={'User':User,'Students':Students,'internships':internships})
+
+def create_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            print("Form created")
+            return redirect('Details')
+    else:
+        form = StudentForm()
+    return render(request, 'create_student.html', {'form': form})
