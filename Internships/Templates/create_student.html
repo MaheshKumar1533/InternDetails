@@ -12,6 +12,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
+        <a class = 'back' href="{% url 'Details' %}">Back</a>
     </form>
 </body>
 

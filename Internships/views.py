@@ -38,12 +38,13 @@ def Details(request):
     return render(request,"Details.html",context ={'User':User,'Students':Students,'internships':internships})
 
 def create_student(request):
+    global User
     if request.method == 'POST':
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             print("Form created")
-            return redirect('Details')
+            return render(request,'create_student.html',{"form":form})
     else:
         form = StudentForm()
-    return render(request, 'add_details.html', {'form': form})
+    return render(request, 'create_student.html', {'form': form})

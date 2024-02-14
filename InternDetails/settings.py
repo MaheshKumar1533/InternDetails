@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-jia2pde3qm)oo!vr9oro2_-l^z4)=*7k@lt1507sn6mtu+pza5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["192.168.116.36","*"]
 
 
 # Application definition
@@ -53,7 +54,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'InternDetails.urls'
 STATIC_ROOT =   BASE_DIR / 'FileSlogo'
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/imagesstudents/'
+MEDIA_ROOT =os.path.join(BASE_DIR , '/imagestudents')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

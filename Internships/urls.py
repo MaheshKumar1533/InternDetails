@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from InternDetails import settings
 
 urlpatterns = [
     path('', views.login, name='login'),
@@ -9,5 +11,5 @@ urlpatterns = [
     path('create_student',views.create_student,name="create_student"),
     #path('AccessFinder/',views.AccessFinder,name='AccessFinder')
     
-]
+]+ static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 # air37265

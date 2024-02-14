@@ -201,12 +201,37 @@
 			.rollno:hover {
 				cursor: pointer;
 			}
+			.submit {
+				font-size: 15px;
+				width: fit-content;
+				padding: 10px 2.5vw;
+				border-radius: 20px;
+				border: none;
+				outline: none;
+				background-color: rgb(70, 19, 4);
+				color: rgb(245, 245, 220);
+				border: 2px solid rgb(70, 19, 4);
+				transition: all 150ms ease-in-out;
+				box-shadow: 0 0 5px 5px rgba(70, 19, 4, 0.5);
+				/* position: absolute;
+				top: 5vh;
+				right: 5vw; */
+				text-decoration: none;
+			}
+			.submit:hover {
+				box-shadow: 0 0 5px 5px rgba(70, 19, 4, 0.5),
+					0 0 10px 10px rgba(245, 245, 220, 0.7);
+				color: rgb(70, 19, 4);
+				background-color: rgb(245, 245, 220);
+				cursor: pointer;
+			}
 		</style>
 	</head>
 	<body>
 		<header>
 			<img src="{% static 'logo.jpg' %}" alt="" />
 		</header>
+		
 		<main>
 			<div class="leftbar">
 				<a href="{% url  'departments' %}" class="back">&#60; Back</a>
@@ -225,17 +250,18 @@
 					<div class="rollnos">
 						{% for x in Students %}
 						<button
-							onclick="internshipview('{{ x.name }}', '{{ x.rollno }}')"
+							onclick="internshipview('{{ x.name }}', '{{ x.rollno }}','{{ x.photo.url }}')"
 						>
 							<div class="rollno">{{x.rollno}}</div>
 						</button>
 						{% endfor %}
 					</div>
+					<a class = 'submit' href="{% url 'create_student' %}">NEW STUDENT</a>
 				</div>
 			</div>
 			<div class="rightbar">
 				<div class="details">
-					<img src="{% static 'image.jpg' %}" class="profilepic" />
+					<img src="" id = 'pic' class="profilepic" />
 					<div class="studetails">
 						<div class="stunama" id="stuname"></div>
 						<div class="sturollno" id="sturollno"></div>
@@ -290,7 +316,8 @@
 			</div>
 		</main>
 		<script>
-			function internshipview(x, y) {
+			function internshipview(x, y,z) {
+				document.getElementById('pic').src=z
 				let stname = document.getElementById("stuname");
 				stname.innerText = "Name : " + x;
 				let stroll = document.getElementById("sturollno");
