@@ -11,5 +11,5 @@ urlpatterns = [
     path('create_student',views.create_student,name="create_student"),
     #path('AccessFinder/',views.AccessFinder,name='AccessFinder')
     
-]+ static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # air37265

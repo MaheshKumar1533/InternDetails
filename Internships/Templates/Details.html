@@ -231,7 +231,7 @@
 		<header>
 			<img src="{% static 'logo.jpg' %}" alt="" />
 		</header>
-		
+
 		<main>
 			<div class="leftbar">
 				<a href="{% url  'departments' %}" class="back">&#60; Back</a>
@@ -250,18 +250,20 @@
 					<div class="rollnos">
 						{% for x in Students %}
 						<button
-							onclick="internshipview('{{ x.name }}', '{{ x.rollno }}','{{ x.photo.url }}')"
+							onclick="internshipview('{{ x.name }}', '{{ x.rollno }}',   '{{ x.photo.url }}')"
 						>
 							<div class="rollno">{{x.rollno}}</div>
 						</button>
 						{% endfor %}
 					</div>
-					<a class = 'submit' href="{% url 'create_student' %}">NEW STUDENT</a>
+					<a class="submit" href="{% url 'create_student' %}"
+						>NEW STUDENT</a
+					>
 				</div>
 			</div>
 			<div class="rightbar">
 				<div class="details">
-					<img src="" id = 'pic' class="profilepic" />
+					<img src="" id="pic" class="profilepic" />
 					<div class="studetails">
 						<div class="stunama" id="stuname"></div>
 						<div class="sturollno" id="sturollno"></div>
@@ -316,14 +318,15 @@
 			</div>
 		</main>
 		<script>
-			function internshipview(x, y,z) {
-				document.getElementById('pic').src=z
+			function internshipview(x, y, z) {
+				document.getElementById("pic").src = z;
 				let stname = document.getElementById("stuname");
 				stname.innerText = "Name : " + x;
 				let stroll = document.getElementById("sturollno");
 				stroll.innerText = "Roll No : " + y;
 				let stb = document.getElementById("stubranch");
 				stb.innerText = "Branch : {{User.dept}}";
+				console.log(z);
 			}
 		</script>
 	</body>

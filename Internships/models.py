@@ -17,10 +17,7 @@ class student(models.Model):
     rollno = models.CharField(max_length=30,primary_key=True,null=False)
     year=models.IntegerField()
     dept=models.CharField(max_length=30)
-    photo = models.ImageField(upload_to='imagesstudent/',
-    blank=True,
-                                   default='',
-                                   null=True)
+    photo = models.ImageField(upload_to='Internships/media/')
     def __str__(self):
         return self.rollno
 
