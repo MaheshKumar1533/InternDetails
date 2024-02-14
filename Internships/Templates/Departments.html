@@ -27,20 +27,17 @@ Departments
 		</div>
 		<a href="{% url 'login' %}" class="logout">Logout</a>
 	</div>
-</div>
-
-
-	<ul class="rightbar">
-
+	</div>
+	<div class="rightbar">
 		{% for i in departments %}
 		{% if User.dept == i.dept %}
 		<a href="{% url 'Details' %}">
-			<li class="department">
+			<div class="department">
 				<img src="{% static i.dept %}.png" alt="" class="icon" />
 				<div class="departmentdetails">
 					<div class="dept">{{User.dept}}</div>
 				</div>
-			</li>
+			</div>
 		</a>
 		{% else %}
 		<a href="{% url 'noAccess' %}">
@@ -53,72 +50,6 @@ Departments
 		</a>
 		{% endif %}
 		{% endfor %}
-		<!-- <a href="">
-			<li class="department">
-				<img src="{% static 'civil.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">CIVIL</div>
-				</div>
-			</li>
-		</a>
-		<a href="cst">
-			<li class="department">
-				<img src="{% static 'cst.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">CST</div>
-				</div>
-			</li>
-		</a>
-		<a href="cse-sub">
-			<li class="department">
-				<img src="{% static 'cse-sub.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept" style="font-size: 30px">
-						CSE<br />(AI,DS,CS)
-					</div>
-				</div>
-			</li>
-		</a>
-		<a href="ece">
-			<li class="department">
-				<img src="{% static 'ece.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">ECE</div>
-				</div>
-			</li>
-		</a>
-		<a href="eee">
-			<li class="department">
-				<img src="{% static 'eee.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">EEE</div>
-				</div>
-			</li>
-		</a>
-		<a href="mech">
-			<li class="department">
-				<img src="{% static 'mech.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">MECH</div>
-				</div>
-			</li>
-		</a>
-		<a href="mba">
-			<li class="department">
-				<img src="{% static 'mba.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">MBA</div>
-				</div>
-			</li>
-		</a>
-		<a href="mca">
-			<li class="department">
-				<img src="{% static 'mca.png' %}" alt="" class="icon" />
-				<div class="departmentdetails">
-					<div class="dept">MCA</div>
-				</div>
-			</li>
-		</a> -->
-	</ul>
+	</>
 </main>
 {% endblock %}
