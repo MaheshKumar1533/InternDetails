@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from .models import DeptUser, depts,student
+from .models import DeptUser, depts,student,internships
 
 # Create your views here.
 
@@ -34,4 +34,4 @@ def Details(request):
     global User
     Students = student.objects.filter(dept = User.dept)
     print(Students)
-    return render(request,"Details.html",context ={'User':User,'Students':Students})
+    return render(request,"Details.html",context ={'User':User,'Students':Students,'internships':internships})
