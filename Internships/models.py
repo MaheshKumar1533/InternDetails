@@ -28,6 +28,6 @@ class internships(models.Model):
     sdate = models.DateField()
     edate = models.DateField()
     intern_type = models.CharField(max_length=30)
-    certificate = models.ImageField(upload_to='certificates/')
+    certificate = models.ImageField(upload_to='certificates/',blank = True)
     def __str__(self):
         return self.internId
