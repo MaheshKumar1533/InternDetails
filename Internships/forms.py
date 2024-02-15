@@ -1,10 +1,29 @@
 from django import forms
 from .models import student, depts
 
+ychoices =[
+    ('1', 'I' ),
+    ('2', 'II' ),
+    ('3', 'III' ),
+    ('4', 'IV' ),
+]
+
+dchoices = []
+
+for x in depts.objects.all():
+    dchoices.append((x, x))
+
+
+
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = student
         fields = ['name', 'rollno', 'year', 'dept']
+        widgets = {
+            'year': forms.Select(choices=ychoices),
+            'dept': forms.Select(choices=dchoices)
+        }
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({
@@ -21,12 +40,10 @@ class StudentForm(forms.ModelForm):
                 'id': "stuyear",
                 'class': "studeptyear"
             })
-        self.fields['year'].queryset = [1,2,3,4]
         self.fields['dept'].widget.attrs.update({
                 'id': "studept",
                 'class': "studeptyear"
             })
-        self.fields['dept'].queryset = depts.objects.all()
         # self.fields['photo'].widget.arrts.update({
         #     'class': "file",
         #     'id': "file"
