@@ -4,7 +4,6 @@
 * {
 	margin: 0;
 	padding: 0;
-	/* box-sizing: border-box; */
 	font-family: "Kanit";
 }
 header {
@@ -24,7 +23,8 @@ main {
 	margin-top: 10px;
 	display: grid;
 	overflow: hidden;
-	height: 83vh;
+	height: 83.5vh;
+	overflow: hidden;
 	border-radius: 20px;
 	grid-template-columns: 20% 80%;
 	grid-column-gap: 10px;
@@ -40,11 +40,10 @@ main {
 }
 .rightbar {
 	padding: 20px;
-	border-radius: 20px;
-	height: 100%;
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
 	background-color: rgba(245, 245, 220, 0.5);
+	border-radius: 20px;
 	overflow: auto;
 }
 .rightbar::-webkit-scrollbar {
@@ -80,6 +79,9 @@ li {
 }
 .viewdetails {
 	margin-left: 15px;
+}
+i {
+	font-size: 12px;
 }
 .profile {
 	display: flex;
@@ -118,10 +120,15 @@ li {
 	padding: 10px;
 	transition: all 200ms ease-in-out;
 }
+
 .logout:hover {
 	cursor: pointer;
 	box-shadow: 0px 0px 5px 5px rgba(245, 245, 220, 0.4);
+	color: rgb(245, 245, 220);
+	background-color: rgb(71, 27, 27);
+	border: 3px solid rgb(245, 245, 220);
 }
+
 a {
 	text-decoration: none;
 }
