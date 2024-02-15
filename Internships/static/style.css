@@ -46,7 +46,7 @@ main {
 	border-radius: 20px;
 	overflow: auto;
 }
-.rightbar::-webkit-scrollbar{
+.rightbar::-webkit-scrollbar {
 	display: none;
 }
 li {
@@ -120,10 +120,15 @@ i {
 	padding: 10px;
 	transition: all 200ms ease-in-out;
 }
+
 .logout:hover {
 	cursor: pointer;
 	box-shadow: 0px 0px 5px 5px rgba(245, 245, 220, 0.4);
+	color: rgb(245, 245, 220);
+	background-color: rgb(71, 27, 27);
+	border: 3px solid rgb(245, 245, 220);
 }
+
 a {
 	text-decoration: none;
 }
