@@ -250,7 +250,7 @@
 					<div class="rollnos">
 						{% for x in Students %}
 						<button
-							onclick="internshipview('{{ x.name }}', '{{ x.rollno }}')"
+							onclick="internshipview('{{ x.name }}', '{{ x.rollno }}', '{{ x.photo.url }}')"
 						>
 							<div class="rollno">{{x.rollno}}</div>
 						</button>
@@ -263,7 +263,11 @@
 			</div>
 			<div class="rightbar">
 				<div class="details">
-					<img id="pic" class="profilepic" src="{% static 'image.jpg' %}"/>
+					<img
+						id="pic"
+						class="profilepic"
+						src="{% static 'image.jpg' %}"
+					/>
 					<div class="studetails">
 						<div class="stunama" id="stuname"></div>
 						<div class="sturollno" id="sturollno"></div>
@@ -318,14 +322,14 @@
 			</div>
 		</main>
 		<script>
-			function internshipview(x, y) {
+			function internshipview(x, y, z) {
+				document.getElementById("pic").src = z;
 				let stname = document.getElementById("stuname");
 				stname.innerText = "Name : " + x;
 				let stroll = document.getElementById("sturollno");
 				stroll.innerText = "Roll No : " + y;
 				let stb = document.getElementById("stubranch");
 				stb.innerText = "Branch : {{User.dept}}";
-				console.log(x, y, z);
 			}
 		</script>
 	</body>

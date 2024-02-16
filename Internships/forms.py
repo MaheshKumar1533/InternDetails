@@ -19,7 +19,7 @@ for x in depts.objects.all():
 class StudentForm(forms.ModelForm):
     class Meta:
         model = student
-        fields = ['name', 'rollno', 'year', 'dept']
+        fields = ['name', 'rollno', 'year', 'dept', 'photo']
         widgets = {
             'year': forms.Select(choices=ychoices),
             'dept': forms.Select(choices=dchoices)
@@ -44,7 +44,7 @@ class StudentForm(forms.ModelForm):
                 'id': "studept",
                 'class': "studeptyear"
             })
-        # self.fields['photo'].widget.arrts.update({
-        #     'class': "file",
-        #     'id': "file"
-        # })
+        self.fields['photo'].widget.attrs.update({
+            'class': "file",
+            'id': "file"
+        })
