@@ -10,7 +10,7 @@ User = 0
 
 @login_required
 def departments(request):
-    return render(request, "Departments.html")
+    return render(request, "departments.html")
 
 def login(request, context={'authentication':0}):
     global User
@@ -27,7 +27,7 @@ def login(request, context={'authentication':0}):
         print("Failed")
 
 def department(request):
-    return render(request, "Details.html")
+    return render(request, "details.html")
 def noAccess(request):
     return render(request,"noAccess.html")
 
@@ -35,7 +35,7 @@ def Details(request):
     global User
     Students = student.objects.filter(dept = User.dept)
     print(Students)
-    return render(request,"Details.html",context ={'User':User,'Students':Students,'internships':internships})
+    return render(request,"details.html",context ={'User':User,'Students':Students,'internships':internships})
 
 def create_student(request):
     global User
