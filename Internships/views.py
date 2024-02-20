@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.db.utils import IntegrityError
 from .models import DeptUser, depts,student,internships
-from .forms import StudentForm
+from .forms import StudentForm, BulkDataForm
 import pandas as pd
 
 # Create your views here.
@@ -56,8 +57,11 @@ def bulk_data_input(request):
         if form.is_valid():
             df = pd.read_excel(request.FILES['file'])
             for index, row in df.iterrows():
-                user = Student.objects.create(name=row['Name'], rollno=row['Roll No'], year=row['year'], dept=row['dept'])
-            return redirect('success')
+                try:
+                    user = student.objects.create(name=row['Name'], rollno=row['Roll No'], year=row['year'], dept=row['dept'])
+                except IntegrityError:
+                    pass
+            return render(request, 'login.html')
     else:
         form = BulkDataForm()
-    return render(request, 'upload_users.html', {'form': form})
+    return render(request, 'bulk_update.html', {'form': form})
