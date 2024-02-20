@@ -49,7 +49,7 @@ def create_student(request):
             return render(request,'create_student.html',{"form":form})
     else:
         form = StudentForm()
-    return render(request, 'create_student.html', {'form': form})
+    return render(request, 'create_student.html', {'form': form, 'User': User})
 
 def bulk_data_input(request):
     if request.method == 'POST':

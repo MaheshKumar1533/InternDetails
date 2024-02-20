@@ -8,9 +8,9 @@ ychoices =[
     ('4', 'IV' ),
 ]
 
-dchoices = []
-for x in depts.objects.all():
-    dchoices.append((x, x))
+# dchoices = []
+# for x in depts.objects.all():
+#     dchoices.append((x, x))
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -18,7 +18,7 @@ class StudentForm(forms.ModelForm):
         fields = ['name', 'rollno', 'year', 'dept']
         widgets = {
             'year': forms.Select(choices=ychoices),
-            'dept': forms.Select(choices=dchoices)
+            # 'dept': forms.Select(choices=dchoices)
         }
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
