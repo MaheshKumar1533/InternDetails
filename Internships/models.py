@@ -17,7 +17,7 @@ class student(models.Model):
     rollno = models.CharField(max_length=30,primary_key=True,null=False)
     year=models.IntegerField()
     dept=models.CharField(max_length=30)
-    photo = models.ImageField(upload_to='Internships/media/')
+    # photo = models.ImageField(upload_to='Internships/media/')
     def __str__(self):
         return self.rollno
 
@@ -28,6 +28,6 @@ class internships(models.Model):
     sdate = models.DateField()
     edate = models.DateField()
     intern_type = models.CharField(max_length=30)
-    certificate = models.ImageField(upload_to='certificates/',blank = True)
+    certificate = models.CharField(max_length=255)
     def __str__(self):
         return self.internId

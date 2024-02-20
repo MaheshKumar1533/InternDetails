@@ -9,17 +9,13 @@ ychoices =[
 ]
 
 dchoices = []
-
 for x in depts.objects.all():
     dchoices.append((x, x))
-
-
-
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model = student
-        fields = ['name', 'rollno', 'year', 'dept', 'photo']
+        fields = ['name', 'rollno', 'year', 'dept']
         widgets = {
             'year': forms.Select(choices=ychoices),
             'dept': forms.Select(choices=dchoices)
@@ -44,7 +40,6 @@ class StudentForm(forms.ModelForm):
                 'id': "studept",
                 'class': "studeptyear"
             })
-        self.fields['photo'].widget.attrs.update({
-            'class': "file",
-            'id': "file"
-        })
+
+class BulkDataForm(forms.Form):
+    file = forms.FileField()
