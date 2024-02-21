@@ -4,7 +4,8 @@ from django.conf.urls.static import static
 from InternDetails import settings
 
 urlpatterns = [
-    path('', views.custom_login, name='login'),
+    path('', views.primaryDashboard, name='primaryDashboard'),
+    path('custom_login', views.custom_login, name='custom_login'),
     # path('', views.bulk_data_input, name='bulk_data_input'),
     path('departments/', views.departments, name='departments'),
     path('noAccess/',views.noAccess,name='noAccess'),

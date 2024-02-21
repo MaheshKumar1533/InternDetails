@@ -4,18 +4,20 @@ from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
 from .forms import StudentForm
 
-User = 0  # Initialize global User variable
+User = 0  #global user to handle the login through the dashboard
 
-@login_required
+@login_required #login id mandatory to access the exclusive dashboard
 def departments(request):
     global User
     return render(request, "Departments.html", {"User":User, 'departments':depts.objects.all().values()})
 
+#Authentication
 def custom_login(request, context={'authentication':0}):
     global User
     user = request.POST.get("username")
     password = request.POST.get("password")
     User =authenticate(request,username=user,password =password)
+    #to not display failure method primarly if np details provided
     if user==None or password==None:
         return render(request, "login.html")
     if User is not None:
@@ -25,15 +27,22 @@ def custom_login(request, context={'authentication':0}):
         return render(request, "login.html", context={'authentication':1})
     else:
         print("Failed")
+
+#primary Dashboard without login
+def primaryDashboard(request):
+    return render(request,"primaryDashboard.html")
+
+
+#logout view
 def custom_logout(request):
     logout(request)
     return redirect("login",)
 
-
+#student details dashboard
 def department(request):
     return render(request, "Details.html")
 
-
+#no aceess for wrong aurthorisation
 def noAccess(request):
     return render(request, "noAccess.html")
 
