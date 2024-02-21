@@ -1,43 +1,48 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.db.utils import IntegrityError
-from .models import DeptUser, depts,student,internships
-from .forms import StudentForm, BulkDataForm
-import pandas as pd
+from .models import DeptUser, depts, student, internships
+from django.contrib.auth import authenticate,login,logout
+from .forms import StudentForm
 
-# Create your views here.
-
-User = 0
+User = 0  # Initialize global User variable
 
 @login_required
 def departments(request):
-    return render(request, "departments.html")
+    global User
+    return render(request, "Departments.html", {"User":User, 'departments':depts.objects.all().values()})
 
-def login(request, context={'authentication':0}):
+def custom_login(request, context={'authentication':0}):
     global User
     user = request.POST.get("username")
     password = request.POST.get("password")
-    User =authenticate(username=user,password =password)
+    User =authenticate(request,username=user,password =password)
     if user==None or password==None:
         return render(request, "login.html")
     if User is not None:
+        login(request,User)
         return render(request, "departments.html", context={'User':User, 'departments':depts.objects.all().values()})
     elif context['authentication']==0:
         return render(request, "login.html", context={'authentication':1})
     else:
         print("Failed")
+def custom_logout(request):
+    logout(request)
+    return redirect("login",)
+
 
 def department(request):
-    return render(request, "details.html")
+    return render(request, "Details.html")
+
+
 def noAccess(request):
-    return render(request,"noAccess.html")
+    return render(request, "noAccess.html")
+
 
 def Details(request):
     global User
-    Students = student.objects.filter(dept = User.dept)
+    Students = student.objects.filter(dept=User.dept)
     print(Students)
-    return render(request,"details.html",context ={'User':User,'Students':Students,'internships':internships})
+    return render(request, "Details.html", context={'User': User, 'Students': Students, 'internships': internships})
 
 def create_student(request):
     global User
@@ -46,10 +51,10 @@ def create_student(request):
         if form.is_valid():
             form.save()
             print("Form created")
-            return render(request,'create_student.html',{"form":form})
+            return render(request, 'create_student.html', {"form": form})
     else:
         form = StudentForm()
-    return render(request, 'create_student.html', {'form': form, 'User': User})
+    return render(request, 'create_student.html', {'form': form})
 
 def bulk_data_input(request):
     if request.method == 'POST':
