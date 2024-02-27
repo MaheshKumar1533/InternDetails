@@ -1,1 +1,4 @@
-
+whitenoise
+pillow
+pandas
+django
