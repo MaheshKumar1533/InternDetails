@@ -79,12 +79,17 @@ WSGI_APPLICATION = 'InternDetails.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# settings.py
+# 'host': 'mongodb+srv://redirectmail1998:reset1998@cluster0.r4p7cwp.mongodb.net/' 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Other Django settings...
 
 
 AUTH_USER_MODEL = 'Internships.DeptUser'

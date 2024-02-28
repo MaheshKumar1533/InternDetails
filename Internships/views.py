@@ -86,3 +86,7 @@ def bulk_data_input(request):
 
 def addInternship(request):
     return render(request,'intern_details.html')
+
+def forgotPassword(request):
+    #logic
+    return redirect("login",)
