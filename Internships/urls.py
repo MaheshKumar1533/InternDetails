@@ -7,13 +7,12 @@ urlpatterns = [
     path('', views.primaryDashboard, name='primaryDashboard'),
     path('custom_login', views.custom_login, name='custom_login'),
     path('register_form', views.register_form, name='register_form'),
-    # path('', views.bulk_data_input, name='bulk_data_input'),
+    path('bulkdata/', views.bulk_data_input, name='bulk_data_input'),
     path('departments/', views.departments, name='departments'),
     path('noAccess/',views.noAccess,name='noAccess'),
     path('Details/',views.Details,name="Details"),
     path('create_student',views.create_student,name="create_student"),
     path('addInternship',views.addInternship,name='addInternship'),
     #path('AccessFinder/',views.AccessFinder,name='AccessFinder')
-    
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # air37265
