@@ -6,6 +6,7 @@ from InternDetails import settings
 urlpatterns = [
     path('', views.primaryDashboard, name='primaryDashboard'),
     path('custom_login/', views.custom_login, name='custom_login'),
+    path('custom_logout/', views.custom_logout, name='custom_logout'),
     path('register_form', views.register_form, name='register_form'),
     path('bulkdata/', views.bulk_data_input, name='bulk_data_input'),
     path('ExclusiveDashboard/', views.ExclusiveDashboard, name='ExclusiveDashboard'),

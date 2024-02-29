@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import StudentForm, BulkDataForm
 import pandas as pd
 
-User = 0  #global user to handle the login through the dashboard
+User = None  #global user to handle the login through the dashboard
 #primary Dashboard without login
 def primaryDashboard(request):
     return render(request,"primaryDashboard.html")
@@ -36,7 +36,9 @@ def custom_login(request, context={'authentication':0}):
 #logout view
 def custom_logout(request):
     logout(request)
-    return redirect("login",)
+    global User
+    User = None
+    return redirect("custom_login",)
 def register_form(request):
     return render(request, "Registration_form.html")
 def create_student(request):

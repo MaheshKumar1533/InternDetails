@@ -247,6 +247,15 @@ input[type="search"] {
         color: white;
     }
 
+    tr {
+        border: 2px solid transparent;
+        transition: all 200ms ease-in-out;
+    }
+
+    tr:hover {
+        border: 2px solid black;
+    }
+
     tr:nth-child(odd) {
         background-color: rgba(212, 158, 212, 0.646);
     }
@@ -284,21 +293,29 @@ input[type="search"] {
     }
 
     #menu {
-        display: none;
+        display: none ;
         position: absolute;
         top: 7vh;
         border-radius: 10px;
         background-color: rgb(158, 43, 158);
         transition: all 200ms ease-in-out;
+        margin-left: -10vw;
     }
 
-    #menu>li {
+    /* #menu>li {
         padding: 10px;
+        color: white;
+    } */
+
+
+
+    #mybtn {
         color: white;
     }
 
-    .showDisplay {
-        display: block;
+    #mybtnk:hover {
+        background-color: rgba(212, 158, 212, 0.646);
+        cursor: pointer;
     }
 </style>
 
@@ -310,13 +327,12 @@ input[type="search"] {
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="{% url 'create_student' %}">Internships</a></li>
-                <li id="mybtn">{{ User.first_name }}
-                    <ul id="menu">
-                        <li>Add Students</li>
-                        <li>Add Internships</li>
-                        <li>Logout </li>
-                    </ul>
-                </li>
+                <li id="mybtn" type="button">{{ User.first_name }}
+                <ul id="menu">
+                    <li><a href="{% url 'create_student' %}">Add Students</a></li>
+                    <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
+                    <li><a href="{% url 'custom_logout' %}">Logout </a></li>
+                </ul></li>
             </ul>
         </div>
     </header>
@@ -402,8 +418,7 @@ input[type="search"] {
                         <td>2023-03-21
                             <br>2023-06-05
                         </td>
-                        <td><button>Ongoing
-                            </button></td>
+                        <td>Ongoing</td>
                     </tr>
                     <tr>
                         <td>Anil Kumar Garidipuri
@@ -422,7 +437,7 @@ input[type="search"] {
                         <td>2022-06-25
                             <br>2023-05-26
                         </td>
-                        <td><button>Ongoing</button></td>
+                        <td>Ongoing</td>
                     </tr>
                     <tr>
                         <td>Anil Kumar Garidipuri
@@ -440,7 +455,7 @@ input[type="search"] {
                         <td>2022-06-25
                             <br>2023-05-26
                         </td>
-                        <td><button>Ongoing</button></td>
+                        <td>Ongoing</td>
                     </tr>
                 </tbody>
             </table>
@@ -450,6 +465,7 @@ input[type="search"] {
             const username = document.getElementById('mybtn')
             const items = document.querySelectorAll('.item1');
             const menu = document.getElementById('menu')
+            menu.style.display = "none";
             items.forEach(item => {
                 item.addEventListener('click', function () {
                     items.forEach(i => i.classList.remove('selected'));
@@ -459,8 +475,15 @@ input[type="search"] {
                 });
             });
             username.addEventListener('click', () => {
-                if(menu.style.display=="none") menu.style.display="block";
-                else menu.style.display="none";
+                if (menu.style.display == "none") {
+                    // alert("display is none")
+                    menu.style.display = "block";
+                }
+                else {
+                    // alert("display is block")
+                    menu.style.display = "none";
+                }
+                username.classList.toggle('active')
             })
         </script>
 </body>
