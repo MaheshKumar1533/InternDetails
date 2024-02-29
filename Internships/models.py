@@ -10,7 +10,7 @@ class depts(models.Model):
     dept = models.CharField(max_length=30)
     def __str__(self):
         return self.dept
-    
+
 class student(models.Model):
     name = models.CharField(max_length=30)
     rollno = models.CharField(max_length=30,primary_key=True,null=False)

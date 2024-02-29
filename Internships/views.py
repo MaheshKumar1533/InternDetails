@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
-from .forms import StudentForm
+from .forms import StudentForm, BulkDataForm
+import pandas as pd
 
 User = 0  #global user to handle the login through the dashboard
 #primary Dashboard without login
@@ -12,7 +13,7 @@ def primaryDashboard(request):
 @login_required #login id mandatory to access the exclusive dashboard
 def departments(request):
     global User
-    return render(request, "Departments.html", {"User":User, 'departments':depts.objects.all().values()})
+    return render(request, "primaryDashboard.html", {"User":User, 'departments':depts.objects.all().values()})
 
 #Authentication
 def custom_login(request, context={'authentication':0}):
@@ -79,7 +80,7 @@ def bulk_data_input(request):
                     user = student.objects.create(name=row['Name'], rollno=row['Roll No'], year=row['year'], dept=row['dept'])
                 except IntegrityError:
                     pass
-            return render(request, 'login.html')
+            return render(request, 'custom_login.html')
     else:
         form = BulkDataForm()
     return render(request, 'bulk_update.html', {'form': form})
