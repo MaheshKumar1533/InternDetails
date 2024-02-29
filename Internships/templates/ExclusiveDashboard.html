@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +21,9 @@
 
     header {
         position: sticky;
+        left: 0px;
         top: 0px;
-        min-width: 100vw;
+        width: 100vw;
     }
 
     .name {
@@ -31,7 +33,7 @@
     }
 
     .navbar {
-        min-width: 100vw;
+        width: 100vw;
         background-color: rgb(158, 43, 158);
         display: flex;
         justify-content: space-between;
@@ -46,6 +48,8 @@
 
     .navbar ul {
         list-style-type: none;
+        display: flex;
+        align-items: center;
         margin: 0;
         padding: 0;
     }
@@ -66,7 +70,6 @@
 
     .navbar li a:hover {
         background-color: #333;
-
     }
 
     .active {
@@ -293,7 +296,7 @@ input[type="search"] {
     }
 
     #menu {
-        display: none ;
+        display: none;
         position: absolute;
         top: 7vh;
         border-radius: 10px;
@@ -302,19 +305,24 @@ input[type="search"] {
         margin-left: -10vw;
     }
 
-    /* #menu>li {
+    #menu>li {
         padding: 10px;
-        color: white;
-    } */
-
-
-
-    #mybtn {
         color: white;
     }
 
-    #mybtnk:hover {
-        background-color: rgba(212, 158, 212, 0.646);
+
+
+    #username {
+        color: white;
+        height: 100%;
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: background-color 0.3s;
+    }
+
+    #username:hover {
+        background-color: #333;
         cursor: pointer;
     }
 </style>
@@ -322,17 +330,18 @@ input[type="search"] {
 <body>
     <header>
         <div class="navbar">
-            <!-- <img src="mitslogo.jpg" alt="" id="image"> -->
+            <!-- <img src="{% static 'logo.jpg' %}" alt="" id="image"> -->
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="{% url 'create_student' %}">Internships</a></li>
-                <li id="mybtn" type="button">{{ User.first_name }}
-                <ul id="menu">
-                    <li><a href="{% url 'create_student' %}">Add Students</a></li>
-                    <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
-                    <li><a href="{% url 'custom_logout' %}">Logout </a></li>
-                </ul></li>
+                <li id="mybtn"><div id="username">{{ User.first_name }}</div>
+                    <ul id="menu">
+                        <li><a href="{% url 'create_student' %}">Add Students</a></li>
+                        <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
+                        <li><a href="{% url 'custom_logout' %}">Logout </a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </header>
@@ -463,6 +472,7 @@ input[type="search"] {
 
         <script>
             const username = document.getElementById('mybtn')
+            const active = document.getElementById('username')
             const items = document.querySelectorAll('.item1');
             const menu = document.getElementById('menu')
             menu.style.display = "none";
@@ -483,7 +493,7 @@ input[type="search"] {
                     // alert("display is block")
                     menu.style.display = "none";
                 }
-                username.classList.toggle('active')
+                active.classList.toggle("active");
             })
         </script>
 </body>

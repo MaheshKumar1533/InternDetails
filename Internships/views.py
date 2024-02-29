@@ -40,7 +40,7 @@ def custom_logout(request):
     User = None
     return redirect("custom_login",)
 def register_form(request):
-    return render(request, "Registration_form.html")
+    return render(request, "facultyRegistrations.html")
 def create_student(request):
     global User
     if request.method == 'POST':
