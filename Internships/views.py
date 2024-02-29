@@ -88,5 +88,6 @@ def addInternship(request):
     return render(request,'intern_details.html')
 
 def forgotPassword(request):
-    #logic
+    global User
+    print(User.mail)
     return redirect("login",)
