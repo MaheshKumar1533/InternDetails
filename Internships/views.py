@@ -11,9 +11,9 @@ def primaryDashboard(request):
     return render(request,"primaryDashboard.html")
 
 @login_required #login id mandatory to access the exclusive dashboard
-def departments(request):
+def ExclusiveDashboard(request):
     global User
-    return render(request, "primaryDashboard.html", {"User":User, 'departments':depts.objects.all().values()})
+    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values()})
 
 #Authentication
 def custom_login(request, context={'authentication':0}):
@@ -26,7 +26,8 @@ def custom_login(request, context={'authentication':0}):
         return render(request, "custom_login.html")
     if User is not None:
         login(request,User)
-        return render(request, "departments.html", context={'User':User, 'departments':depts.objects.all().values()})
+        return redirect('ExclusiveDashboard')
+        #return render(request, "departments.html", context={'User':User, 'departments':depts.objects.all().values()})
     elif context['authentication']==0:
         return render(request, "custom_login.html", context={'authentication':1})
     else:

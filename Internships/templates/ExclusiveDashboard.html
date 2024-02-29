@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open</title>
-    <link rel="stylesheet" href="mitspage.css">
+    <!-- <link rel="stylesheet" href="mitspage.css"> -->
 </head>
 <style>
     * {
@@ -289,6 +289,7 @@ input[type="search"] {
         top: 7vh;
         border-radius: 10px;
         background-color: rgb(158, 43, 158);
+        transition: all 200ms ease-in-out;
     }
 
     #menu>li {
@@ -304,22 +305,19 @@ input[type="search"] {
 <body>
     <header>
         <div class="navbar">
-            <img src="mitslogo.jpg" alt="" id="image">
+            <!-- <img src="mitslogo.jpg" alt="" id="image"> -->
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="{% url 'create_student' %}">Internships</a></li>
-                <li>
-                    <button id="mybtn">{{ User.first_name }}</button>
+                <li id="mybtn">{{ User.first_name }}
+                    <ul id="menu">
+                        <li>Add Students</li>
+                        <li>Add Internships</li>
+                        <li>Logout </li>
+                    </ul>
                 </li>
-        </div>
-        <ul id="menu">
-            <li>Add Students</li>
-            <li>Add Internships</li>
-            <li>Logout </li>
-        </ul>
-        </li>
-        </ul>
+            </ul>
         </div>
     </header>
     <div class="wrapper">
@@ -448,8 +446,8 @@ input[type="search"] {
             </table>
         </div>
 
-        <script src="">
-            const username = document.getElementById('username')
+        <script>
+            const username = document.getElementById('mybtn')
             const items = document.querySelectorAll('.item1');
             const menu = document.getElementById('menu')
             items.forEach(item => {
@@ -461,8 +459,8 @@ input[type="search"] {
                 });
             });
             username.addEventListener('click', () => {
-                alert()
-                // menu.classList.toggle('')
+                if(menu.style.display=="none") menu.style.display="block";
+                else menu.style.display="none";
             })
         </script>
 </body>
