@@ -40,7 +40,22 @@ def custom_logout(request):
     User = None
     return redirect("custom_login",)
 def register_form(request):
-    return render(request, "Registration_form.html")
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    email = request.POST.get("email")
+    first_name = request.POST.get("first_name")
+    last_name = request.POST.get("last_name")
+    dept=request.POST.get("dept")
+    if not (username and password and email):
+        print("error getting details!")
+        return render(request, "facultyRegistrations.html")
+    Newuser = {"username":username,"password":password,"first_name":first_name,"last_name":last_name,"email":email,"dept":dept}
+    Deptuser = DeptUser(**Newuser)
+    print("user saved successfully!")
+    return redirect("custom_login",)
+
+
+
 def create_student(request):
     global User
     if request.method == 'POST':
@@ -91,7 +106,52 @@ def bulk_data_input(request):
 def addInternship(request):
     return render(request,'intern_details.html')
 
+
+
+def send_otp(email, otp):
+    # Set up email server
+    sender_email = "filloutsurvey2024@outlook.com"
+    sender_password = "Reset1998"
+    smtp_server = "smtp-mail.outlook.com"
+    smtp_port = 587
+    recipient_email = email
+
+    # Create message
+    subject = "Forgetten Password"
+    body = f"Your otp for user verification is: {otp}"
+    message = MIMEText(body)
+    message["Subject"] = subject
+    message["From"] = sender_email
+    message["To"] = recipient_email
+
+    # Connect to the server
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        # Log in to the email account
+        server.login(sender_email, sender_password)
+        # Send the email
+        server.sendmail(sender_email, recipient_email, message.as_string())
+        print("Registered code sent successfully.")
+
+
+from random import randint as ri
+def AssignCode():
+	otp = ri(1000,9999)
+	return otp
+
 def forgotPassword(request):
-    global User
-    print(User.mail)
-    return redirect("login",)
+    # username= input("Enter your Username")
+    username = request.POST.get("username")
+    dept = request.POST.get("dept")
+    newPassword = request.POST.get("newPassword")
+    ForgetUser = DeptUser.objects.get(username=username,dept=dept) 
+    print(f"{ForgetUser} is valid user")
+    if ForgetUser:
+        EmailOutlook = ForgetUser.email 
+        otp = AssignCode()
+        send_otp(EmailOutlook, otp)
+        UserOtp = request.POST.get("otp")
+        if otp==UserOtp:
+            ForgetUser.update(password=newPassword)
+            return redirect("custom_login",)
+    return render(request, "forgotPassword.html")

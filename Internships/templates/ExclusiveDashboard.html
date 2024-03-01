@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open</title>
-    <!-- <link rel="stylesheet" href="mitspage.css"> -->
 </head>
 <style>
     * {
@@ -16,12 +16,18 @@
 
     body {
         font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        max-width: 100vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        overflow: auto;
     }
 
     header {
         position: sticky;
         top: 0px;
-        min-width: 100vw;
+        width: 100vw;
+        height: 10vh;
     }
 
     .name {
@@ -31,12 +37,19 @@
     }
 
     .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-width: 100vw;
+        z-index: 1000;
         min-width: 100vw;
         background-color: rgb(158, 43, 158);
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px;
+        margin-top: 0px;
     }
 
     .navbar img {
@@ -48,6 +61,11 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
+        display: flex;
+    }
+
+    .navbar ul li {
+        margin-right: 10px;
     }
 
     .navbar li {
@@ -56,12 +74,32 @@
     }
 
     .navbar li a {
+        float: left;
         display: block;
         color: white;
         text-decoration: none;
         padding: 10px 20px;
         border-radius: 20px;
         transition: background-color 0.3s;
+    }
+
+    .navbar #mybtn {
+        color: white;
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+    }
+
+    .navbar #mybtn .username {
+        margin-right: 5px;
+        font-size: 20px;
+    }
+
+    .navbar #mybtn svg {
+        width: 70px;
+        height: 35px;
+        fill: white;
+        cursor: pointer;
     }
 
     .navbar li a:hover {
@@ -109,7 +147,9 @@
     .container .item1.selected {
         background-color: rgb(168, 35, 168);
     }
-
+    .cont{
+        width: 80vw;
+    }
     .box {
         /* width: 80%; Adjust the width as needed */
         max-width: 80vw;
@@ -193,16 +233,6 @@ input[type="search"] {
         box-sizing: border-box;
     }
 
-    body {
-        height: 100vh;
-        max-width: 100vw;
-        display: grid;
-        place-items: center;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        overflow: auto;
-    }
-
     .table-container {
         padding: 0 10%;
         margin: 40px auto 0;
@@ -214,7 +244,7 @@ input[type="search"] {
         border-radius: 20px;
         overflow: hidden;
         background-size: cover;
-        /* max-width: 10vw; */
+        width: 80vw;
         /* height: 100vh; */
         box-shadow: -1px 12px 12px -6px rgba(0, 0, 0, 0.5);
     }
@@ -245,15 +275,6 @@ input[type="search"] {
     th {
         background-color: rgb(158, 43, 158);
         color: white;
-    }
-
-    tr {
-        border: 2px solid transparent;
-        transition: all 200ms ease-in-out;
-    }
-
-    tr:hover {
-        border: 2px solid black;
     }
 
     tr:nth-child(odd) {
@@ -293,28 +314,34 @@ input[type="search"] {
     }
 
     #menu {
-        display: none ;
+        display: none;
         position: absolute;
         top: 7vh;
         border-radius: 10px;
         background-color: rgb(158, 43, 158);
         transition: all 200ms ease-in-out;
-        margin-left: -10vw;
     }
 
-    /* #menu>li {
+    #menu>li {
         padding: 10px;
         color: white;
-    } */
-
-
-
-    #mybtn {
-        color: white;
     }
 
-    #mybtnk:hover {
-        background-color: rgba(212, 158, 212, 0.646);
+    .showDisplay {
+        display: block;
+    }
+
+    #username {
+        color: white;
+        height: 100%;
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: background-color 0.3s;
+    }
+
+    #username:hover {
+        background-color: #333;
         cursor: pointer;
     }
 </style>
@@ -322,17 +349,25 @@ input[type="search"] {
 <body>
     <header>
         <div class="navbar">
-            <!-- <img src="mitslogo.jpg" alt="" id="image"> -->
+            <img src="{% static 'logo.jpg' %}" alt="" id="image">
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
-                <li><a href="{% url 'create_student' %}">Internships</a></li>
-                <li id="mybtn" type="button">{{ User.first_name }}
-                <ul id="menu">
-                    <li><a href="{% url 'create_student' %}">Add Students</a></li>
-                    <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
-                    <li><a href="{% url 'custom_logout' %}">Logout </a></li>
-                </ul></li>
+                <li><a href="{% url 'Details' %}">Students</a></li>
+                <li id="mybtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-person-circle" viewBox="0 0 16 16" id="icon">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg>
+                    <div id="username">{{ User.first_name }}</div>
+                    <ul id="menu">
+                        <li><a href="{% url 'create_student' %}">Add Students</a></li>
+                        <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
+                        <li><a href="{% url 'custom_logout' %}">Logout </a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </header>
@@ -351,36 +386,40 @@ input[type="search"] {
         </div>
         <div class="cont">
             <div class="box">
-                <form action="">
-                    <input type="text" id="rollno" placeholder="Rollno">
-                    <input type="text" id="studname" placeholder="Student Name">
-                    <input type="text" id="company" placeholder="Company Name">
-                    <input type="text" id="Domain" placeholder="Domain">
-                    <select name="status" id="status">
+                <form action="" id="filterForm" autocomplete="off">
+                    <input type="text" id="rollno" placeholder="Rollno" autocomplete="off">
+                    <input type="text" id="studname" placeholder="Student Name" autocomplete="off">
+                    <input type="text" id="company" placeholder="Company Name" autocomplete="off">
+                    <input type="text" id="domain" placeholder="Domain" autocomplete="off">
+                    <select name="status" id="status" autocomplete="off">
                         <option selected disabled>Status</option>
-                        <option value="All">All</option>
+                        <option value="all" selected>All</option>
                         <option value="Ongoing">Ongoing</option>
                         <option value="Completed">Completed</option>
                     </select>
-                    <select name="year" id="year">
+                    <select name="year" id="year" autocomplete="off">
                         <option selected disabled>Year</option>
-                        <option value="All">All</option>
+                        <option value="all" selected>All</option>
                         <option value="I">I</option>
                         <option value="II">II</option>
                         <option value="III">III</option>
                         <option value="IV">IV</option>
                     </select>
-                    <select name="section" id="section">
+                    <select name="section" id="section" autocomplete="off">
                         <legend>Status</legend>
                         <option selected disabled>Section</option>
-                        <option value="All">All</option>
+                        <option value="all" selected>All</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
+                        <option value="E">E</option>
                         <option value="Other">Other</option>
                     </select>
-                    <input type="search" name="search" placeholder="Search..">
+                    <div class="buttons" style="display: flex;">
+                    <button type="submit">Search</button>
+                    <button type="button" onclick="reset()">Reset</button>
+                </div>
                 </form>
             </div>
             <table border-collapse>
@@ -401,7 +440,7 @@ input[type="search"] {
                     <th>Status</th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>B.Bhuvan Kumar
                             <br>20691A3108
                             <br>III-AI
@@ -456,13 +495,14 @@ input[type="search"] {
                             <br>2023-05-26
                         </td>
                         <td>Ongoing</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
 
         <script>
             const username = document.getElementById('mybtn')
+            const active = document.getElementById('username')
             const items = document.querySelectorAll('.item1');
             const menu = document.getElementById('menu')
             menu.style.display = "none";
@@ -476,15 +516,156 @@ input[type="search"] {
             });
             username.addEventListener('click', () => {
                 if (menu.style.display == "none") {
-                    // alert("display is none")
                     menu.style.display = "block";
                 }
                 else {
-                    // alert("display is block")
                     menu.style.display = "none";
                 }
-                username.classList.toggle('active')
+                active.classList.toggle("active");
             })
+            const filterForm = document.getElementById('filterForm');
+            filterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                filterAndDisplayData();
+            });
+
+            function filterAndDisplayData() {
+                const rollno = document.getElementById('rollno').value.trim().toLowerCase();
+                const studname = document.getElementById('studname').value.trim().toLowerCase();
+                const company = document.getElementById('company').value.trim().toLowerCase();
+                const year = document.getElementById('year').value.trim().toLowerCase();
+                const section = document.getElementById('section').value.trim().toLowerCase();
+                const status = document.getElementById('status').value.trim().toLowerCase();
+                const domain = document.getElementById('domain').value.trim().toLowerCase();
+
+
+                let filteredData = studentData;
+                console.log("Original Data:", filteredData);
+
+                if (rollno !== "") {
+                    console.log("Filtering by Roll Number:", rollno);
+                    filteredData = filteredData.filter(student => {
+                        // return student.rollNo.toLowerCase() === rollno;
+                        return student.rollNo.toLowerCase().includes(rollno);
+                    });
+                }
+
+                console.log("After Roll Number Filter:", filteredData);
+
+                if (studname !== "") {
+                    console.log("Filtering by Student Name:", studname);
+                    filteredData = filteredData.filter(student => {
+                        // return student.studName.toLowerCase() === studname;
+                        return student.studName.toLowerCase().includes(studname);
+                    });
+                }
+
+                console.log("After Student Name Filter:", filteredData);
+
+                if (company !== "") {
+                    console.log("Filtering by Company:", company);
+                    filteredData = filteredData.filter(student => {
+                        // return student.company.toLowerCase() === company;
+                        return student.company.toLowerCase().includes(company);
+                    });
+                }
+                if (domain !== "") {
+                    console.log("Filtering by Domain:", domain);
+                    filteredData = filteredData.filter(student => {
+                        // return student.company.toLowerCase() === company;
+                        return student.domain.toLowerCase().includes(domain);
+                    });
+                }
+                console.log("After Company Filter:", filteredData);
+
+                if (year !== "all") {
+                    console.log("Filtering by Year:", year);
+                    filteredData = filteredData.filter(student => {
+                        return student.year.toLowerCase() === year.toLowerCase();
+                    });
+                }
+
+
+
+                console.log("After Year Filter:", filteredData);
+
+                if (section !== "all") {
+                    console.log("Filtering by Year:", section);
+                    filteredData = filteredData.filter(student => {
+                        return student.section.toLowerCase() === section.toLowerCase();
+                    });
+                }
+
+                if (status !== "all") {
+                    console.log("Filtering by status:", status);
+                    filteredData = filteredData.filter(student => {
+                        return student.status.toLowerCase() === status.toLowerCase();
+                    });
+                }
+
+                console.log("After Status Filter:", filteredData);
+
+
+                displayData(filteredData);
+
+            }
+            function displayData(data) {
+                const tableBody = document.querySelector('tbody');
+                tableBody.innerHTML = "";
+
+                data.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+            <td>${student.studName},${student.rollNo},${student.year},${student.section}</td>
+            <td>${student.company},${student.domain}</td>
+            <td>${student.project_name}</td>
+            <td>${student.stipend}</td>
+            <td>${student.start_date},${student.End_date}</td>
+            <td>${student.status}</td>
+        `;
+                    tableBody.appendChild(row);
+                });
+            }
+            function reset(){
+                document.getElementById('rollno').value = "";
+                document.getElementById('studname').value = "";
+                document.getElementById('company').value = "";
+                document.getElementById('year').value = "";
+                document.getElementById('section').value = "";
+                document.getElementById('status').value = "";
+                document.getElementById('domain').value = "";
+                filterAndDisplayData()
+            }
+            const studentData = [
+                {
+                    rollNo: '20691A3108',
+                    studName: 'B.Bhuvan Kumar',
+                    company: 'Tnt Info Tech',
+                    domain: 'Web',
+                    project_name: "website",
+                    stipend: "no",
+                    status: "ongoing",
+                    year: 'III',
+                    section: 'A',
+                    start_date: '12-04-23',
+                    End_date: '12-06-23'
+                },
+                {
+                    rollNo: '20691A3101',
+                    studName: 'Anil Kumar',
+                    company: 'OyeBusy',
+                    domain: 'web',
+                    project_name: "website",
+                    stipend: "no",
+                    status: "ongoing",
+                    year: 'IV',
+                    section: 'B',
+                    start_date: '1-03-24',
+                    End_date: '1-06-24'
+                },
+
+            ];
+            displayData(studentData);
         </script>
 </body>
 
