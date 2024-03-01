@@ -25,9 +25,13 @@
 
     header {
         position: sticky;
+        left: 0px;
         top: 0px;
         width: 100vw;
+<<<<<<< HEAD
         height: 10vh;
+=======
+>>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
     }
 
     .name {
@@ -37,6 +41,7 @@
     }
 
     .navbar {
+<<<<<<< HEAD
         position: fixed;
         top: 0;
         left: 0;
@@ -44,6 +49,9 @@
         min-width: 100vw;
         z-index: 1000;
         min-width: 100vw;
+=======
+        width: 100vw;
+>>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
         background-color: rgb(158, 43, 158);
         display: flex;
         justify-content: space-between;
@@ -59,6 +67,8 @@
 
     .navbar ul {
         list-style-type: none;
+        display: flex;
+        align-items: center;
         margin: 0;
         padding: 0;
         display: flex;
@@ -104,7 +114,6 @@
 
     .navbar li a:hover {
         background-color: #333;
-
     }
 
     .active {
@@ -327,9 +336,13 @@ input[type="search"] {
         color: white;
     }
 
+<<<<<<< HEAD
     .showDisplay {
         display: block;
     }
+=======
+
+>>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
 
     #username {
         color: white;
@@ -349,6 +362,7 @@ input[type="search"] {
 <body>
     <header>
         <div class="navbar">
+<<<<<<< HEAD
             <img src="{% static 'logo.jpg' %}" alt="" id="image">
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
@@ -362,6 +376,14 @@ input[type="search"] {
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                     </svg>
                     <div id="username">{{ User.first_name }}</div>
+=======
+            <!-- <img src="{% static 'logo.jpg' %}" alt="" id="image"> -->
+            <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="{% url 'create_student' %}">Internships</a></li>
+                <li id="mybtn"><div id="username">{{ User.first_name }}</div>
+>>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
                     <ul id="menu">
                         <li><a href="{% url 'create_student' %}">Add Students</a></li>
                         <li><a href="{% url 'addInternship' %}">Add Internships</a></li>

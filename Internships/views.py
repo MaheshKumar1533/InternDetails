@@ -40,6 +40,7 @@ def custom_logout(request):
     User = None
     return redirect("custom_login",)
 def register_form(request):
+<<<<<<< HEAD
     username = request.POST.get("username")
     password = request.POST.get("password")
     email = request.POST.get("email")
@@ -56,6 +57,9 @@ def register_form(request):
 
 
 
+=======
+    return render(request, "facultyRegistrations.html")
+>>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
 def create_student(request):
     global User
     if request.method == 'POST':
