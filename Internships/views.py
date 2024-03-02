@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
-from .forms import StudentForm, BulkDataForm
+from .forms import BulkDataForm
 import pandas as pd
 
 User = None  #global user to handle the login through the dashboard
@@ -40,7 +40,6 @@ def custom_logout(request):
     User = None
     return redirect("custom_login",)
 def register_form(request):
-<<<<<<< HEAD
     username = request.POST.get("username")
     password = request.POST.get("password")
     email = request.POST.get("email")
@@ -55,22 +54,17 @@ def register_form(request):
     print("user saved successfully!")
     return redirect("custom_login",)
 
-
-
-=======
-    return render(request, "facultyRegistrations.html")
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
 def create_student(request):
     global User
     if request.method == 'POST':
-        form = StudentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            print("Form created")
-            return render(request, 'create_student.html', {"form": form})
-    else:
-        form = StudentForm()
-    return render(request, 'create_student.html', {'form': form})
+        name = request.POST.get('name')
+        roll = request.POST.get('rollNo')
+        year = request.POST.get('year')
+        branch = User.dept
+        newstudent = student(name=name, rollno=roll, year=year, dept=branch)
+        newstudent.save()
+        print("Student Created Successfully")
+    return render(request, 'create_student.html', {"User": User})
 
 
 

@@ -28,10 +28,6 @@
         left: 0px;
         top: 0px;
         width: 100vw;
-<<<<<<< HEAD
-        height: 10vh;
-=======
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
     }
 
     .name {
@@ -41,17 +37,12 @@
     }
 
     .navbar {
-<<<<<<< HEAD
-        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         min-width: 100vw;
         z-index: 1000;
         min-width: 100vw;
-=======
-        width: 100vw;
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
         background-color: rgb(158, 43, 158);
         display: flex;
         justify-content: space-between;
@@ -156,9 +147,11 @@
     .container .item1.selected {
         background-color: rgb(168, 35, 168);
     }
-    .cont{
+
+    .cont {
         width: 80vw;
     }
+
     .box {
         /* width: 80%; Adjust the width as needed */
         max-width: 80vw;
@@ -323,6 +316,7 @@ input[type="search"] {
     }
 
     #menu {
+        z-index: -1;
         display: none;
         position: absolute;
         top: 7vh;
@@ -335,14 +329,6 @@ input[type="search"] {
         padding: 10px;
         color: white;
     }
-
-<<<<<<< HEAD
-    .showDisplay {
-        display: block;
-    }
-=======
-
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
 
     #username {
         color: white;
@@ -362,11 +348,10 @@ input[type="search"] {
 <body>
     <header>
         <div class="navbar">
-<<<<<<< HEAD
-            <img src="{% static 'logo.jpg' %}" alt="" id="image">
+            <img src="{% static 'mitslogo.jpg' %}" alt="" id="image">
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
-                <li><a class="active" href="#home">Home</a></li>
+                <li><a class="active" href="{% url 'ExclusiveDashboard' %}">Home</a></li>
                 <li><a href="{% url 'Details' %}">Students</a></li>
                 <li id="mybtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -376,14 +361,6 @@ input[type="search"] {
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                     </svg>
                     <div id="username">{{ User.first_name }}</div>
-=======
-            <!-- <img src="{% static 'logo.jpg' %}" alt="" id="image"> -->
-            <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
-            <ul>
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="{% url 'create_student' %}">Internships</a></li>
-                <li id="mybtn"><div id="username">{{ User.first_name }}</div>
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
                     <ul id="menu">
                         <li><a href="{% url 'create_student' %}">Add Students</a></li>
                         <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
@@ -439,9 +416,9 @@ input[type="search"] {
                         <option value="Other">Other</option>
                     </select>
                     <div class="buttons" style="display: flex;">
-                    <button type="submit">Search</button>
-                    <button type="button" onclick="reset()">Reset</button>
-                </div>
+                        <button type="submit">Search</button>
+                        <button type="button" onclick="reset()">Reset</button>
+                    </div>
                 </form>
             </div>
             <table border-collapse>
@@ -648,7 +625,7 @@ input[type="search"] {
                     tableBody.appendChild(row);
                 });
             }
-            function reset(){
+            function reset() {
                 document.getElementById('rollno').value = "";
                 document.getElementById('studname').value = "";
                 document.getElementById('company').value = "";
