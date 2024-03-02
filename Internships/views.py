@@ -104,7 +104,7 @@ def bulk_data_input(request):
 def addInternship(request):
     return render(request,'intern_details.html')
 
-
+ForgetUser = None
 
 def send_otp(email, otp):
     # Set up email server
@@ -137,19 +137,79 @@ def AssignCode():
 	otp = ri(1000,9999)
 	return otp
 
+# def verifyPassword(request,newPassword):
+#     global ForgetUser
+#     EmailOutlook = ForgetUser.email 
+#     otp = AssignCode()
+#     send_otp(EmailOutlook, otp)
+#     UserOtp = request.POST.get("otp")
+#     if otp==UserOtp:
+#         ForgetUser.update(password=newPassword)
+#         ForgetUser.save()
+#         print("Password Changed")
+#         return redirect("custom_login")
+
+
+from django.http import HttpResponse
+from django.contrib import messages
+
 def forgotPassword(request):
-    # username= input("Enter your Username")
-    username = request.POST.get("username")
-    dept = request.POST.get("dept")
-    newPassword = request.POST.get("newPassword")
-    ForgetUser = DeptUser.objects.get(username=username,dept=dept) 
-    print(f"{ForgetUser} is valid user")
-    if ForgetUser:
-        EmailOutlook = ForgetUser.email 
+    print("Loaded....")
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        print(f"{username} got")
+        dept = request.POST.get('dept')
+        print(f"{dept} got")
+        request.session['username'] = username
+        request.session['dept'] = dept
+        print("saved")
+        ForgetUser = DeptUser.objects.get(username=username,dept=dept)
+        EmailOutlook = ForgetUser.email
         otp = AssignCode()
         send_otp(EmailOutlook, otp)
-        UserOtp = request.POST.get("otp")
-        if otp==UserOtp:
-            ForgetUser.update(password=newPassword)
-            return redirect("custom_login",)
-    return render(request, "forgotPassword.html")
+        request.session['otp']=otp
+        print(f"{otp} saved & got")
+        return redirect('otpPage')
+    return render(request, 'confirmpassword.html')
+
+def otpPage(request):
+    if request.method == 'POST':
+        userOtp = request.POST.get('userOtp')
+        print(f"{userOtp} got")
+        password = request.POST.get('password')
+        print(f"{password} got")
+        username = request.session.get('username')
+        dept = request.session.get('dept')
+        otp=request.session.get('otp')
+        print(f"{username} {otp} {dept} retrived")
+        ForgetUser = DeptUser.objects.get(username=username,dept=dept)
+        if ForgetUser:
+            print(f"{ForgetUser}")
+        # print(f"{ForgetUser} is valid user")
+        # if ForgetUser:
+        #     verifyPassword(newPassword)
+        if otp == userOtp:
+            # Clear session data
+            request.session.clear()
+            ForgetUser.password = password
+            # Process login or whatever action you want
+            # return HttpResponse(f"OTP verified successfully for {username} from {dept}!")
+            return redirect("custom_login")
+        else:
+            # Display error message
+            messages.error(request, 'Invalid OTP. Please try again.')
+    return render(request, 'password.html')
+
+# def forgotPassword(request):
+#     if request.method=="POST":
+#         # username= input("Enter your Username")
+#         username = request.POST.get("username")
+#         dept = request.POST.get("dept")
+#         newPassword = request.POST.get("newPassword")
+
+#         global ForgetUser
+#         ForgetUser = DeptUser.objects.get(username=username,dept=dept)
+#         print(f"{ForgetUser} is valid user")
+#         if ForgetUser:
+#             verifyPassword(newPassword)
+#     return render(request, "confrimpassword.html")
