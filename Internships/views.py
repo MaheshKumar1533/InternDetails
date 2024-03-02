@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
 from .forms import BulkDataForm
-import pandas as pd
+# import pandas as pd
 
 User = None  #global user to handle the login through the dashboard
 #primary Dashboard without login
