@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
 from .forms import StudentForm, BulkDataForm
+import smtplib
+from email.mime.text import MIMEText
 import pandas as pd
 
 User = None  #global user to handle the login through the dashboard
@@ -40,19 +42,25 @@ def custom_logout(request):
     User = None
     return redirect("custom_login",)
 def register_form(request):
-    username = request.POST.get("username")
-    password = request.POST.get("password")
-    email = request.POST.get("email")
-    first_name = request.POST.get("first_name")
-    last_name = request.POST.get("last_name")
-    dept=request.POST.get("dept")
-    if not (username and password and email):
-        print("error getting details!")
-        return render(request, "facultyRegistrations.html")
-    Newuser = {"username":username,"password":password,"first_name":first_name,"last_name":last_name,"email":email,"dept":dept}
-    Deptuser = DeptUser(**Newuser)
-    print("user saved successfully!")
-    return redirect("custom_login",)
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST["password"].encode("utf-8")
+        email = request.POST.get("email")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        dept = request.POST.get("dept")
+        # dept=request.POST.get("dept")
+        # if not (username and password and email):
+        #     print("error getting details!")
+        #     return render(request, "facultyRegistrations.html")
+        Newuser = {"username":username,"first_name":first_name,"last_name":last_name,"email":email,"dept":dept}
+        Deptuser = DeptUser(**Newuser)
+        print(first_name,last_name,dept)
+        Deptuser.set_password(password)
+        Deptuser.save()
+        print("user saved successfully!")
+        return redirect("custom_login",)
+    return render(request,"facultyRegistrations.html")
 
 def create_student(request):
     global User
@@ -104,7 +112,8 @@ def bulk_data_input(request):
 def addInternship(request):
     return render(request,'intern_details.html')
 
-ForgetUser = None
+import smtplib
+from email.mime.text import MIMEText
 
 def send_otp(email, otp):
     # Set up email server
@@ -115,8 +124,8 @@ def send_otp(email, otp):
     recipient_email = email
 
     # Create message
-    subject = "Forgetten Password"
-    body = f"Your otp for user verification is: {otp}"
+    subject = "OTP for Verification"
+    body = f"Your OTP for login into the Internship Dashboard is: {otp}"
     message = MIMEText(body)
     message["Subject"] = subject
     message["From"] = sender_email
@@ -129,7 +138,11 @@ def send_otp(email, otp):
         server.login(sender_email, sender_password)
         # Send the email
         server.sendmail(sender_email, recipient_email, message.as_string())
-        print("Registered code sent successfully.")
+        print("OTP sent successfully.")
+
+# Example usage:
+# send_otp("recipient@example.com", "123456")
+
 
 
 from random import randint as ri
@@ -165,8 +178,9 @@ def forgotPassword(request):
         print("saved")
         ForgetUser = DeptUser.objects.get(username=username,dept=dept)
         EmailOutlook = ForgetUser.email
+        print(ForgetUser.email)
         otp = AssignCode()
-        send_otp(EmailOutlook, otp)
+        # send_otp(EmailOutlook, otp)
         request.session['otp']=otp
         print(f"{otp} saved & got")
         return redirect('otpPage')
@@ -174,13 +188,13 @@ def forgotPassword(request):
 
 def otpPage(request):
     if request.method == 'POST':
-        userOtp = request.POST.get('userOtp')
+        userOtp = int(request.POST.get('userOtp'))
         print(f"{userOtp} got")
         password = request.POST.get('password')
         print(f"{password} got")
         username = request.session.get('username')
         dept = request.session.get('dept')
-        otp=request.session.get('otp')
+        otp=int(request.session.get('otp'))
         print(f"{username} {otp} {dept} retrived")
         ForgetUser = DeptUser.objects.get(username=username,dept=dept)
         if ForgetUser:
@@ -191,7 +205,7 @@ def otpPage(request):
         if otp == userOtp:
             # Clear session data
             request.session.clear()
-            ForgetUser.password = password
+            ForgetUser.set_password(password)
             # Process login or whatever action you want
             # return HttpResponse(f"OTP verified successfully for {username} from {dept}!")
             return redirect("custom_login")
