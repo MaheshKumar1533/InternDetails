@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open</title>
-    <!-- <link rel="stylesheet" href="mitspage.css"> -->
 </head>
 <style>
     * {
@@ -16,12 +16,18 @@
 
     body {
         font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        max-width: 100vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        overflow: auto;
     }
 
     header {
         position: sticky;
+        left: 0px;
         top: 0px;
-        min-width: 100vw;
+        width: 100vw;
     }
 
     .name {
@@ -31,11 +37,10 @@
     }
 
     .navbar {
-        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        min-width: 100w;
+        min-width: 100vw;
         z-index: 1000;
         min-width: 100vw;
         background-color: rgb(158, 43, 158);
@@ -53,6 +58,8 @@
 
     .navbar ul {
         list-style-type: none;
+        display: flex;
+        align-items: center;
         margin: 0;
         padding: 0;
         display: flex;
@@ -98,7 +105,6 @@
 
     .navbar li a:hover {
         background-color: #333;
-
     }
 
     .active {
@@ -140,6 +146,10 @@
 
     .container .item1.selected {
         background-color: rgb(168, 35, 168);
+    }
+
+    .cont {
+        width: 80vw;
     }
 
     .box {
@@ -225,16 +235,6 @@ input[type="search"] {
         box-sizing: border-box;
     }
 
-    body {
-        height: 100vh;
-        max-width: 100vw;
-        display: grid;
-        place-items: center;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        overflow: auto;
-    }
-
     .table-container {
         padding: 0 10%;
         margin: 40px auto 0;
@@ -246,7 +246,7 @@ input[type="search"] {
         border-radius: 20px;
         overflow: hidden;
         background-size: cover;
-        /* max-width: 10vw; */
+        width: 80vw;
         /* height: 100vh; */
         box-shadow: -1px 12px 12px -6px rgba(0, 0, 0, 0.5);
     }
@@ -316,6 +316,7 @@ input[type="search"] {
     }
 
     #menu {
+        z-index: -1;
         display: none;
         position: absolute;
         top: 7vh;
@@ -329,30 +330,41 @@ input[type="search"] {
         color: white;
     }
 
-    .showDisplay {
-        display: block;
+    #username {
+        color: white;
+        height: 100%;
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: background-color 0.3s;
+    }
+
+    #username:hover {
+        background-color: #333;
+        cursor: pointer;
     }
 </style>
 
 <body>
     <header>
         <div class="navbar">
-            <!-- <img src="mitslogo.jpg" alt="" id="image"> -->
+            <img src="{% static 'mitslogo.jpg' %}" alt="" id="image">
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="{% url 'create_student' %}">Internships</a></li>
-                <li id="mybtn">{{ User.first_name }}
+                <li><a class="active" href="{% url 'ExclusiveDashboard' %}">Home</a></li>
+                <li><a href="{% url 'Details' %}">Students</a></li>
+                <li id="mybtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16" id="icon">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                         <path fill-rule="evenodd"
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                     </svg>
+                    <div id="username">{{ User.first_name }}</div>
                     <ul id="menu">
-                        <li>Add Students</li>
-                        <li>Add Internships</li>
-                        <li>Logout </li>
+                        <li><a href="{% url 'create_student' %}">Add Students</a></li>
+                        <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
+                        <li><a href="{% url 'custom_logout' %}">Logout </a></li>
                     </ul>
                 </li>
             </ul>
@@ -400,10 +412,13 @@ input[type="search"] {
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
+                        <option value="E">E</option>
                         <option value="Other">Other</option>
                     </select>
-                    <button type="submit">Filter</button>
-                    <button type="reset">Reset</button>
+                    <div class="buttons" style="display: flex;">
+                        <button type="submit">Search</button>
+                        <button type="button" onclick="reset()">Reset</button>
+                    </div>
                 </form>
 
             </div>
@@ -442,8 +457,7 @@ input[type="search"] {
                         <td>2023-03-21
                             <br>2023-06-05
                         </td>
-                        <td><button>Ongoing
-                            </button></td>
+                        <td>Ongoing</td>
                     </tr>
                     <tr>
                         <td>Anil Kumar Garidipuri
@@ -462,7 +476,7 @@ input[type="search"] {
                         <td>2022-06-25
                             <br>2023-05-26
                         </td>
-                        <td><button>Ongoing</button></td>
+                        <td>Ongoing</td>
                     </tr>
                     <tr>
                         <td>Anil Kumar Garidipuri
@@ -480,7 +494,7 @@ input[type="search"] {
                         <td>2022-06-25
                             <br>2023-05-26
                         </td>
-                        <td><button>Ongoing</button></td>
+                        <td>Ongoing</td>
                     </tr> -->
                 </tbody>
             </table>
@@ -488,8 +502,10 @@ input[type="search"] {
 
         <script>
             const username = document.getElementById('mybtn')
+            const active = document.getElementById('username')
             const items = document.querySelectorAll('.item1');
             const menu = document.getElementById('menu')
+            menu.style.display = "none";
             items.forEach(item => {
                 item.addEventListener('click', function () {
                     items.forEach(i => i.classList.remove('selected'));
@@ -499,8 +515,13 @@ input[type="search"] {
                 });
             });
             username.addEventListener('click', () => {
-                if (menu.style.display == "none") menu.style.display = "block";
-                else menu.style.display = "none";
+                if (menu.style.display == "none") {
+                    menu.style.display = "block";
+                }
+                else {
+                    menu.style.display = "none";
+                }
+                active.classList.toggle("active");
             })
             const filterForm = document.getElementById('filterForm');
             filterForm.addEventListener('submit', function (e) {
@@ -605,16 +626,25 @@ input[type="search"] {
                     tableBody.appendChild(row);
                 });
             }
-
+            function reset() {
+                document.getElementById('rollno').value = "";
+                document.getElementById('studname').value = "";
+                document.getElementById('company').value = "";
+                document.getElementById('year').value = "";
+                document.getElementById('section').value = "";
+                document.getElementById('status').value = "";
+                document.getElementById('domain').value = "";
+                filterAndDisplayData()
+            }
             const studentData = [
                 {
                     rollNo: '20691A3108',
                     studName: 'B.Bhuvan Kumar',
-                    company: 'TnT Info Tech',
+                    company: 'Tnt Info Tech',
                     domain: 'Web',
                     project_name: "website",
                     stipend: "no",
-                    status: 'Ongoing',
+                    status: "ongoing",
                     year: 'III',
                     section: 'A',
                     start_date: '12-04-23',
@@ -622,10 +652,12 @@ input[type="search"] {
                 },
                 {
                     rollNo: '20691A3101',
-                    studName: 'Anil Kumar Garidipuri',
-                    company: 'oyeBusy',
-                    domain: 'Web',
-                    status: 'Ongoing',
+                    studName: 'Anil Kumar',
+                    company: 'OyeBusy',
+                    domain: 'web',
+                    project_name: "website",
+                    stipend: "no",
+                    status: "ongoing",
                     year: 'IV',
                     section: 'B',
                     start_date: '1-03-24',
