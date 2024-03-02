@@ -28,10 +28,6 @@
         left: 0px;
         top: 0px;
         width: 100vw;
-<<<<<<< HEAD
-        height: 10vh;
-=======
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
     }
 
     .name {
@@ -41,17 +37,12 @@
     }
 
     .navbar {
-<<<<<<< HEAD
-        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         min-width: 100vw;
         z-index: 1000;
         min-width: 100vw;
-=======
-        width: 100vw;
->>>>>>> 6b8470ac39061cc866a36e65c83f92938d9f065c
         background-color: rgb(158, 43, 158);
         display: flex;
         justify-content: space-between;
@@ -156,9 +147,11 @@
     .container .item1.selected {
         background-color: rgb(168, 35, 168);
     }
-    .cont{
+
+    .cont {
         width: 80vw;
     }
+
     .box {
         /* width: 80%; Adjust the width as needed */
         max-width: 80vw;
@@ -323,6 +316,7 @@ input[type="search"] {
     }
 
     #menu {
+        z-index: -1;
         display: none;
         position: absolute;
         top: 7vh;
@@ -334,10 +328,6 @@ input[type="search"] {
     #menu>li {
         padding: 10px;
         color: white;
-    }
-
-    .showDisplay {
-        display: block;
     }
 
     #username {
@@ -358,10 +348,10 @@ input[type="search"] {
 <body>
     <header>
         <div class="navbar">
-            <img src="{% static 'logo.jpg' %}" alt="" id="image">
+            <img src="{% static 'mitslogo.jpg' %}" alt="" id="image">
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
-                <li><a class="active" href="#home">Home</a></li>
+                <li><a class="active" href="{% url 'ExclusiveDashboard' %}">Home</a></li>
                 <li><a href="{% url 'Details' %}">Students</a></li>
                 <li id="mybtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -402,12 +392,12 @@ input[type="search"] {
                     <input type="text" id="domain" placeholder="Domain" autocomplete="off">
                     <select name="status" id="status" autocomplete="off">
                         <option selected disabled>Status</option>
-                        <option value="all" selected>All</option>
+                        <option value="All" selected>All</option>
                         <option value="Ongoing">Ongoing</option>
                         <option value="Completed">Completed</option>
                     </select>
                     <select name="year" id="year" autocomplete="off">
-                        <option selected disabled>Year</option>
+                        <option selected diabled>Year</option>
                         <option value="all" selected>All</option>
                         <option value="I">I</option>
                         <option value="II">II</option>
@@ -426,10 +416,11 @@ input[type="search"] {
                         <option value="Other">Other</option>
                     </select>
                     <div class="buttons" style="display: flex;">
-                    <button type="submit">Search</button>
-                    <button type="button" onclick="reset()">Reset</button>
-                </div>
+                        <button type="submit">Search</button>
+                        <button type="button" onclick="reset()">Reset</button>
+                    </div>
                 </form>
+
             </div>
             <table border-collapse>
                 <colgroup>
@@ -635,7 +626,7 @@ input[type="search"] {
                     tableBody.appendChild(row);
                 });
             }
-            function reset(){
+            function reset() {
                 document.getElementById('rollno').value = "";
                 document.getElementById('studname').value = "";
                 document.getElementById('company').value = "";
@@ -672,8 +663,9 @@ input[type="search"] {
                     start_date: '1-03-24',
                     End_date: '1-06-24'
                 },
-
             ];
+
+            // Display initial data
             displayData(studentData);
         </script>
 </body>
