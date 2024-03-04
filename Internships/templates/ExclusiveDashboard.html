@@ -433,7 +433,7 @@ input[type="search"] {
                     <th>Student Details</th>
                     <th>Internship Details</th>
                     <th>Project name</th>
-                    <th>Type/Stipend</th>
+                    <th>Type</th>
                     <th>Start/End Date</th>
                     <th>Status</th>
                 </thead>
@@ -615,9 +615,9 @@ input[type="search"] {
             <td>${student.studName},${student.rollNo},${student.year},${student.section}</td>
             <td>${student.company},${student.domain}</td>
             <td>${student.project_name}</td>
-            <td>${student.stipend}</td>
+            <td>${student.type}</td>
             <td>${student.start_date},${student.End_date}</td>
-            <td>${student.status}</td>
+            <td>${student.current_status}</td>
         `;
                     tableBody.appendChild(row);
                 });
@@ -639,12 +639,13 @@ input[type="search"] {
                     studName: "{{student.rollno.name}}",
                         company: "{{student.internshipName}}",
                             domain: '{{student.domain}}',
-                                project_name: "{{student.projectName}}",
-                                    status: "{{student.status}}",
-                                        year: "{{student.rollno.year}}",
-                                            section: '{{student.rollno.section}}',
-                                                start_date: '{{student.sdate}}',
-                                                    End_date: '{{student.edate}}'
+                                type: '{{student.intern_type}}',
+                                    project_name: "{{student.projectName}}",
+                                        current_status: "{{student.status}}",
+                                            year: "{{student.rollno.year}}",
+                                                section: '{{student.rollno.section}}',
+                                                    start_date: '{{student.sdate}}',
+                                                        End_date: '{{student.edate}}'
             },
             {% endfor %}
             ];
