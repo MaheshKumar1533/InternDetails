@@ -1,17 +1,4 @@
 from django import forms
-from .models import student, depts
-
-ychoices =[
-    ('1', 'I' ),
-    ('2', 'II' ),
-    ('3', 'III' ),
-    ('4', 'IV' ),
-]
-
-dchoices =[]
-
-for i in depts.objects.all():
-    dchoices.append((i.dept, i.dept))
 
 # class StudentForm(forms.ModelForm):
 #     class Meta:

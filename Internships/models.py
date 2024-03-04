@@ -8,9 +8,9 @@ class DeptUser(AbstractUser):
 
 class depts(models.Model):
     dept = models.CharField(max_length=30)
-    no_of_students = models.IntegerField(default=0)
-    no_of_interns = models.IntegerField(default=0)
-    no_of_unique_internships = models.IntegerField(default=0)
+    no_of_students = models.IntegerField()
+    no_of_interns = models.IntegerField()
+    no_of_unique_internships = models.IntegerField()
     def __str__(self):
         return self.dept
 
