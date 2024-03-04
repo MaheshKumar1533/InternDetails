@@ -22,11 +22,11 @@ class student(models.Model):
 class internships(models.Model):
     rollno = models.ForeignKey(student,on_delete = models.CASCADE)
     internId = models.AutoField(primary_key=True)
-    ComapanyName = models.CharField(max_length=30)
-    domine = models.CharField(max_length=40)
+    internshipName = models.CharField(max_length=30)
+    # domine = models.CharField(max_length=40)
     sdate = models.DateField()
     edate = models.DateField()
     intern_type = models.CharField(max_length=30)
     certificate = models.CharField(max_length=255)
     def __str__(self):
-        return self.internId
+        return self.intern_type

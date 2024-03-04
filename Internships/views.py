@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
-from .forms import StudentForm, BulkDataForm
+from .forms import BulkDataForm
 import smtplib
 from email.mime.text import MIMEText
 import pandas as pd
@@ -15,7 +15,14 @@ def primaryDashboard(request):
 @login_required #login id mandatory to access the exclusive dashboard
 def ExclusiveDashboard(request):
     global User
-    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values()})
+    # for internship in internships.objects.select_related('rollno').all():
+    #     print(f"name:{internship.rollno.name}")
+    internships_with_students = internships.objects.select_related('rollno').all()
+    print(internships_with_students)
+    # for internship in internships_with_students:
+    #     print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
+
+    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values(),'studentData':internships.objects.select_related('rollno').all()})
 
 #Authentication
 def custom_login(request, context={'authentication':0}):
