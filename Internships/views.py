@@ -142,7 +142,6 @@ def addInternship(request):
         print(newInternship)
         newInternship.save()
         return redirect("ExclusiveDashboard")
-
     return render(request,'intern_details.html',{"User":User})
 
 import smtplib
