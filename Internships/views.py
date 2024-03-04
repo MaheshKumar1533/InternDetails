@@ -18,9 +18,9 @@ def ExclusiveDashboard(request):
     # for internship in internships.objects.select_related('rollno').all():
     #     print(f"name:{internship.rollno.name}")
     internships_with_students = internships.objects.select_related('rollno').all()
-    for internship in internships_with_students:
-        print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
-
+    # for internship in internships_with_students:
+    #     print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
+    print(internships_with_students.values())
     return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values(),'studentData':internships.objects.select_related('rollno').all()})
 
 #Authentication
@@ -115,7 +115,19 @@ def bulk_data_input(request):
         form = BulkDataForm()
     return render(request, 'bulk_update.html', {'form': form})
 
+@login_required
 def addInternship(request):
+    if request.method == 'POST':
+        internship = internships()
+        stu = student.objects.filter(rollno=request.POST.get('rollno'))
+        internship.rollno = stu[0]
+        internship.internshipName = request.POST.get("internshipName")
+        internship.sdate = request.POST.get("sdate")
+        internship.edate = request.POST.get("edate")
+        internship.intern_type = request.POST.get("type")
+        internship.certificate = request.POST.get("certificate")
+        internship.save()
+        print("Saved")
     return render(request,'intern_details.html', {'User': User})
 
 import smtplib

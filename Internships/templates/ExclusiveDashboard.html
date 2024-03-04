@@ -633,33 +633,24 @@ input[type="search"] {
                 filterAndDisplayData()
             }
             const studentData = [
-                {
-                    rollNo: '20691A3108',
-                    studName: 'B.Bhuvan Kumar',
-                    company: 'Tnt Info Tech',
-                    domain: 'Web',
-                    project_name: "website",
-                    stipend: "no",
-                    status: "ongoing",
-                    year: 'III',
-                    section: 'A',
-                    start_date: '12-04-23',
-                    End_date: '12-06-23'
-                },
-                {
-                    rollNo: '20691A3101',
-                    studName: 'Anil Kumar',
-                    company: 'OyeBusy',
-                    domain: 'web',
-                    project_name: "website",
-                    stipend: "no",
-                    status: "ongoing",
-                    year: 'IV',
-                    section: 'B',
-                    start_date: '1-03-24',
-                    End_date: '1-06-24'
-                },
+                {% for student in studentData %}
+            {
+                rollNo: "{{student.rollno.rollno}}",
+                    studName: "{{student.rollno.name}}",
+                        company: "{{student.internshipName}}",
+                            domain: 'Web',
+                                project_name: "website",
+                                    stipend: "no",
+                                        status: "ongoing",
+                                            year: "{{student.rollno.year}}",
+                                                section: 'A',
+                                                    start_date: '{{student.sdate}}',
+                                                        End_date: '{{student.edate}}'
+            },
+            {% endfor %}
             ];
+
+            console.log(studentData);
 
             // Display initial data
             displayData(studentData);

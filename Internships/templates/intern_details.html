@@ -291,27 +291,35 @@
     </header>
     <div class="container">
         <h1>Internship Form</h1>
-        <form id="internshipForm">
-            <label for="companyName">Company Name:</label>
-            <input type="text" id="companyName" name="companyName" required>
+        <form method="post" class="internshipForm">
+            {% csrf_token %}
+            <label for="rollno">Roll No:</label>
+            <input type="text" id="rollno" name="rollno" required>
+
+            <label for="internshipName">Internship Name:</label>
+            <input type="text" id="internshipName" name="internshipName" required>
 
             <label for="type">Type:</label>
             <input type="text" id="type" name="type" required>
 
-            <label for="domain">Domain:</label>
-            <input type="text" id="domain" name="domain" required>
+            <!-- <label for="domain">Domain:</label>
+            <input type="text" id="domain" name="domain" required> -->
 
-            <label for="stipend">Stipend:</label>
+            <!-- <label for="stipend">Stipend:</label>
             <input type="text" id="stipend" name="stipend" required>
 
             <label for="projectName">Project Name:</label>
-            <input type="text" id="projectName" name="projectName" required>
+            <input type="text" id="projectName" name="projectName" required> -->
 
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" name="startDate" required>
+            <label for="sdate">Start Date:</label>
+            <input type="date" id="sdate" name="sdate" required>
 
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" name="endDate" required>
+            <label for="edate">End Date:</label>
+            <input type="date" id="edate" name="edate" required>
+
+            <label for="certificate">Certificate Link:</label>
+            <input type="text" id="certificate" name="certificate" required>
+
             <button>
                 <span class="transition"></span>
                 <span class="gradient"></span>
