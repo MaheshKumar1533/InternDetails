@@ -90,6 +90,8 @@ DATABASES = {
 }
 
 # Other Django settings...
+# settings.py
+DEFAULT_CHARSET = 'utf-8'
 
 
 AUTH_USER_MODEL = 'Internships.DeptUser'

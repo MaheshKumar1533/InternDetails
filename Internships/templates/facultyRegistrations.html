@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="UTF-8" />
-		<title>Responsive Registration Form</title>
-		<link rel="stylesheet" href="register.css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	</head>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Responsive Registration Form</title>
+	<link rel="stylesheet" href="register.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<style>
 		* {
 			margin: 0;
@@ -161,9 +162,9 @@
 			transition: all 0.3s ease;
 		}
 
-		#dot-1:checked ~ .category label .one,
-		#dot-2:checked ~ .category label .two,
-		#dot-3:checked ~ .category label .three {
+		#dot-1:checked~.category label .one,
+		#dot-2:checked~.category label .two,
+		#dot-3:checked~.category label .three {
 			background: #9b59b6;
 			border-color: #d9d9d9;
 		}
@@ -187,13 +188,13 @@
 			font-weight: 500;
 			letter-spacing: 1px;
 			cursor: pointer;
-			transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease;
 			background-color: #726cf8;
 			background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
 		}
 
 		form .button input:hover {
-			background-image: linear-gradient(45deg, #726cf8 0%, #e975a8 74%);
+			background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
 		}
 
 		@media (max-width: 584px) {
@@ -225,105 +226,116 @@
 				flex-direction: column;
 			}
 		}
+
+		.dropdown {
+			width: 500px;
+		}
+
+		.dropdown select {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			appearance: none;
+			border-color: ;
+		}
+
+		.dropdown select option {
+			padding: 10px;
+			font-size: 16px;
+		}
 	</style>
 
-	<body>
-		<header>
-			<div class="navbar">
-				<img src="mitslogo.jpg" alt="" id="image" />
-				<div class="name">
-					MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCES
-				</div>
-				<ul>
-					<li><a class="active" href="#home">Home</a></li>
-					<li><a href="#internships">Internships</a></li>
-					<li>
-						<a href="profile"
-							><i class="fa fa-fw fa-user"></i>Login</a
-						>
-					</li>
-				</ul>
-			</div>
-		</header>
-		<div class="container">
-			<div class="title">Registration Form</div>
-			<div class="content">
-				<form action="#">
-					<div class="user-details">
-						<div class="input-box">
-							<span class="details">Full Name</span>
-							<input
-								type="text"
-								placeholder="Enter your name"
-								required
-							/>
-						</div>
-						<div class="input-box">
-							<span class="details">Username</span>
-							<input
-								type="text"
-								placeholder="Enter your username"
-								required
-							/>
-						</div>
-						<div class="input-box">
-							<span class="details">Email</span>
-							<input
-								type="text"
-								placeholder="Enter your email"
-								required
-							/>
-						</div>
-						<div class="input-box">
-							<span class="details">Phone Number</span>
-							<input
-								type="text"
-								placeholder="Enter your number"
-								required
-							/>
-						</div>
-						<div class="input-box">
-							<span class="details">Password</span>
-							<input
-								type="text"
-								placeholder="Enter your password"
-								required
-							/>
-						</div>
-						<div class="input-box">
-							<span class="details">Confirm Password</span>
-							<input
-								type="text"
-								placeholder="Confirm your password"
-								required
-							/>
-						</div>
-					</div>
-					<div class="gender-details">
-						<input type="radio" name="gender" id="dot-1" />
-						<input type="radio" name="gender" id="dot-2" />
-						<input type="radio" name="gender" id="dot-3" />
-						<span class="gender-title">Are you a faculty?</span>
-						<div class="category">
-							<label for="dot-1">
-								<span class="dot one"></span>
-								<span class="gender">Yes</span>
-							</label>
-							<label for="dot-2">
-								<span class="dot two"></span>
-								<span class="gender">No</span>
-							</label>
-							<label for="dot-3">
-								<span class="dot three"></span>
-								<span class="gender">Others</span>
-							</label>
-						</div>
-					</div>
-					<div class="button">
-						<input type="submit" value="Register" />
-					</div>
-				</form>
-			</div>
+<body>
+	<header>
+		<div class="navbar">
+			<img src="mitslogo.png" alt="" id="image">
+			<div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCES</div>
+			<ul>
+				<li><a class="active" href="#home">Home</a></li>
+				<li><a href="#internships">Internships</a></li>
+				<li><a href="profile"><i class="fa fa-fw fa-user"></i>Login</a></li>
+			</ul>
 		</div>
-	</body>
+	</header>
+	<div class="container">
+		<div class="title">Registration Form</div>
+		<div class="content">
+			
+			<form action="" method="post">
+				{% csrf_token %}
+				<div class="user-details">
+					<div class="input-box">
+						<span class="details">First Name</span>
+						<input type="text" name="first_name" placeholder="Enter your first name" required>
+					</div>
+					<div class="input-box">
+						<span class="details">Last Name</span>
+						<input type="text" name="last_name" placeholder="Enter your Last Name" required>
+					</div>
+					<div class="input-box">
+						<span class="details">Email</span>
+						<input type="text" name="email" placeholder="Enter your email" required>
+					</div>
+					<div class="input-box">
+						<span class="details">Username</span>
+						<input type="text" name="username" placeholder="Enter your Username" required>
+					</div>
+					<div class="input-box">
+						<span class="details">Password</span>
+						<input type="password" name="password" placeholder="Enter your password" required>
+					</div>
+					<div class="input-box">
+						<span class="details"> Confirm Password</span>
+						<input type="password" name="confrimedapssword" placeholder="confirm your password" required>
+					</div>
+					<div class="dropdown">
+						<span class="details">Department</span>
+
+						<select name="dept">
+
+							<option value="CSE">CSE</option>
+							<option value="CAI">CAI</option>
+							<option value="CSD">CSD</option>
+							<option value="CSC">CSC</option>
+							<option value="CST">CST</option>
+							<option value="ECE">ECE</option>
+							<option value="EEE">EEE</option>
+							<option value="MECH">MECH</option>
+							<option value="CIVIL">CIVIL</option>
+							<option value="MBA">MBA</option>
+							<option value="MCA">MCA</option>
+						</select>
+
+
+					</div>
+				</div>
+				<div class="gender-details">
+					<input type="radio" name="gender" id="dot-1">
+					<input type="radio" name="gender" id="dot-2">
+					<input type="radio" name="gender" id="dot-3">
+					<span class="gender-title">Role</span>
+					<div class="category">
+						<label for="dot-1">
+							<span class="dot one"></span>
+							<span class="gender">Faculty</span>
+						</label>
+						<label for="dot-2">
+							<span class="dot two"></span>
+							<span class="gender">HOD</span>
+						</label>
+
+					</div>
+				</div>
+				<div class="button">
+					<input type="submit" value="Register">
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+
 </html>

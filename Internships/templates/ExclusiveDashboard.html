@@ -392,12 +392,12 @@ input[type="search"] {
                     <input type="text" id="domain" placeholder="Domain" autocomplete="off">
                     <select name="status" id="status" autocomplete="off">
                         <option selected disabled>Status</option>
-                        <option value="all" selected>All</option>
+                        <option value="All" selected>All</option>
                         <option value="Ongoing">Ongoing</option>
                         <option value="Completed">Completed</option>
                     </select>
                     <select name="year" id="year" autocomplete="off">
-                        <option selected disabled>Year</option>
+                        <option selected diabled>Year</option>
                         <option value="all" selected>All</option>
                         <option value="I">I</option>
                         <option value="II">II</option>
@@ -420,6 +420,7 @@ input[type="search"] {
                         <button type="button" onclick="reset()">Reset</button>
                     </div>
                 </form>
+
             </div>
             <table border-collapse>
                 <colgroup>
@@ -660,8 +661,9 @@ input[type="search"] {
                     start_date: '1-03-24',
                     End_date: '1-06-24'
                 },
-
             ];
+
+            // Display initial data
             displayData(studentData);
         </script>
 </body>
