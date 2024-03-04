@@ -638,14 +638,13 @@ input[type="search"] {
                 rollNo: "{{student.rollno.rollno}}",
                     studName: "{{student.rollno.name}}",
                         company: "{{student.internshipName}}",
-                            domain: 'Web',
-                                project_name: "website",
-                                    stipend: "no",
-                                        status: "ongoing",
-                                            year: "{{student.rollno.year}}",
-                                                section: 'A',
-                                                    start_date: '{{student.sdate}}',
-                                                        End_date: '{{student.edate}}'
+                            domain: '{{student.domain}}',
+                                project_name: "{{student.projectName}}",
+                                    status: "{{student.status}}",
+                                        year: "{{student.rollno.year}}",
+                                            section: '{{student.rollno.section}}',
+                                                start_date: '{{student.sdate}}',
+                                                    End_date: '{{student.edate}}'
             },
             {% endfor %}
             ];
