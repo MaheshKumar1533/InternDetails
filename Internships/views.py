@@ -15,7 +15,13 @@ def primaryDashboard(request):
 @login_required #login id mandatory to access the exclusive dashboard
 def ExclusiveDashboard(request):
     global User
-    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values()})
+    # for internship in internships.objects.select_related('rollno').all():
+    #     print(f"name:{internship.rollno.name}")
+    internships_with_students = internships.objects.select_related('rollno').all()
+    for internship in internships_with_students:
+        print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
+
+    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values(),'studentData':internships.objects.select_related('rollno').all()})
 
 #Authentication
 def custom_login(request, context={'authentication':0}):
