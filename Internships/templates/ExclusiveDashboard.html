@@ -502,10 +502,17 @@ input[type="search"] {
 
         <script>
             const username = document.getElementById('mybtn')
-            const active = document.getElementById('username')
-            const items = document.querySelectorAll('.item1');
             const menu = document.getElementById('menu')
             menu.style.display = "none";
+            username.addEventListener('click', () => {
+                if (menu.style.display == "none") {
+                    menu.style.display = "block";
+                }
+                else {
+                    menu.style.display = "none";
+                }
+            })
+            const items = document.querySelectorAll('.item1');
             items.forEach(item => {
                 item.addEventListener('click', function () {
                     items.forEach(i => i.classList.remove('selected'));
@@ -514,15 +521,6 @@ input[type="search"] {
                     this.classList.add('selected');
                 });
             });
-            username.addEventListener('click', () => {
-                if (menu.style.display == "none") {
-                    menu.style.display = "block";
-                }
-                else {
-                    menu.style.display = "none";
-                }
-                active.classList.toggle("active");
-            })
             const filterForm = document.getElementById('filterForm');
             filterForm.addEventListener('submit', function (e) {
                 e.preventDefault();
