@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import DeptUser, depts, student, internships
 from django.contrib.auth import authenticate,login,logout
-from .forms import StudentForm, BulkDataForm
+from .forms import BulkDataForm
 import smtplib
 from email.mime.text import MIMEText
 import pandas as pd
@@ -110,7 +110,7 @@ def bulk_data_input(request):
     return render(request, 'bulk_update.html', {'form': form})
 
 def addInternship(request):
-    return render(request,'intern_details.html')
+    return render(request,'intern_details.html', {'User': User})
 
 import smtplib
 from email.mime.text import MIMEText
