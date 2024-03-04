@@ -82,7 +82,6 @@ def create_student(request):
 
 
 
-
 #student details dashboard
 def department(request):
     return render(request, "Details.html")
@@ -115,7 +114,35 @@ def bulk_data_input(request):
         form = BulkDataForm()
     return render(request, 'bulk_update.html', {'form': form})
 
+
+"""
+example to store internships details using the student table:
+
+--> 
+from Interships.models import student,internships
+# get a student instance
+rollno = request.POST.get("rollno")
+student = Student.objects.get(rollno=rollno)
+
+# Create an internship instance and assign it to the student
+internship = Internship.objects.create(student=student, internshipName='',intern_type="online/offline" sdate='2024-01-01', edate='2024-03-01',certificate="")
+
+"""
+
 def addInternship(request):
+    if request.method == "POST":
+        rollno = request.POST.get("rollno")
+        currentStudent = student.objects.get(rollno=rollno)
+        internshipName = request.POST.get("internshipName")
+        sdate = request.POST.get("sdate")
+        edate = request.POST.get("edate")
+        intern_type = request.POST.get("intern_type")
+        certificate = request.POST.get("certificate")
+        newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName,intern_type=intern_type ,sdate=sdate, edate=edate,certificate=certificate)
+        print(newInternship)
+        newInternship.save()
+        return redirect("ExclusiveDashboard")
+
     return render(request,'intern_details.html')
 
 import smtplib

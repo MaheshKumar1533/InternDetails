@@ -15,6 +15,7 @@ class student(models.Model):
     name = models.CharField(max_length=30)
     rollno = models.CharField(max_length=30,primary_key=True,null=False)
     year=models.IntegerField()
+    section=models.CharField(max_length=6)
     dept=models.CharField(max_length=30)
     def __str__(self):
         return self.rollno
@@ -23,7 +24,9 @@ class internships(models.Model):
     rollno = models.ForeignKey(student,on_delete = models.CASCADE)
     internId = models.AutoField(primary_key=True)
     internshipName = models.CharField(max_length=30)
-    # domine = models.CharField(max_length=40)
+    domain = models.CharField(max_length=40)
+    projectName=models.CharField(max_length = 40)
+    status=models.CharField(max_length=10)
     sdate = models.DateField()
     edate = models.DateField()
     intern_type = models.CharField(max_length=30)
