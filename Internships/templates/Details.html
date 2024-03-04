@@ -35,11 +35,11 @@
             overflow: hidden;
         }
 
-
         header {
             position: sticky;
+            left: 0px;
             top: 0px;
-            min-width: 100vw;
+            width: 100vw;
         }
 
         .name {
@@ -49,34 +49,70 @@
         }
 
         .navbar {
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-width: 100vw;
+            z-index: 1000;
             min-width: 100vw;
             background-color: rgb(158, 43, 158);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px;
+            margin-top: 0px;
         }
 
         .navbar img {
             height: 40px;
+            width: auto;
         }
 
         .navbar ul {
             list-style-type: none;
+            display: flex;
+            align-items: center;
             margin: 0;
             padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 10px;
         }
 
         .navbar li {
-            display: inline;
+            display: inline-block;
+            margin: 0 7px;
         }
 
         .navbar li a {
+            float: left;
+            display: block;
             color: white;
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 20px;
             transition: background-color 0.3s;
+        }
+
+        .navbar #mybtn {
+            color: white;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+        }
+
+        .navbar #mybtn .username {
+            margin-right: 5px;
+            font-size: 20px;
+        }
+
+        .navbar #mybtn svg {
+            width: 70px;
+            height: 35px;
+            fill: white;
+            cursor: pointer;
         }
 
         .navbar li a:hover {
@@ -453,23 +489,30 @@
         }
 
         #menu {
-            display: flex;
-            flex-direction: column;
+            display: none;
             position: absolute;
-            right: 0;
-            background-color: rgb(158, 43, 158);
-            margin-top: 3vh;
-            padding: 5px;
+            top: 8vh;
             border-radius: 10px;
+            background-color: rgb(158, 43, 158);
+            transition: all 200ms ease-in-out;
         }
 
-        #menu li {
-            cursor: pointer;
+        #menu>li {
             padding: 10px;
             color: white;
         }
 
         #username {
+            color: white;
+            height: 100%;
+            width: 100%;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        #username:hover {
+            background-color: #333;
             cursor: pointer;
         }
     </style>
@@ -481,8 +524,8 @@
             <img src="{% static 'mitslogo.jpg' %}" alt="" id="image">
             <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
             <ul>
-                <li><a class="active" href="{% url 'ExclusiveDashboard' %}">Home</a></li>
-                <li><a href="{% url 'Details' %}">Students</a></li>
+                <li><a href="{% url 'ExclusiveDashboard' %}">Home</a></li>
+                <li><a class="active" href="{% url 'Details' %}">Students</a></li>
                 <li id="mybtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16" id="icon">
@@ -490,7 +533,7 @@
                         <path fill-rule="evenodd"
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                     </svg>
-                    <a id="username"><i class="fa fa-fw fa-user"></i>{{ User.first_name }}</a>
+                    <div id="username">{{ User.first_name }}</div>
                     <ul id="menu">
                         <li><a href="{% url 'create_student' %}">Add Students</a></li>
                         <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
@@ -646,7 +689,7 @@
         menu.style.display = "none";
         username.addEventListener('click', () => {
             if (menu.style.display == "none") {
-                menu.style.display = "flex";
+                menu.style.display = "block";
             }
             else {
                 menu.style.display = "none";

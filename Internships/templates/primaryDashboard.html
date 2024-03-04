@@ -23,6 +23,12 @@
 			max-width: 100vw;
 		}
 
+		.name {
+			color: white;
+			font-size: 18px;
+			margin-left: 10px;
+		}
+
 		.navbar {
 			max-width: 100vw;
 			background: rgb(158, 43, 158);
@@ -144,7 +150,7 @@
 			justify-content: center;
 			align-items: center;
 			font-size: 1.5rem;
-			overflow: hidden ;
+			overflow: hidden;
 		}
 
 		.total-container,
@@ -173,9 +179,10 @@
 	<header>
 		<div class="navbar">
 			<img src="{% static 'mitslogo.jpg' %}" alt="" id="image" />
+			<div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
 			<ul>
-				<li><a class="active" href="#home">Home</a></li>
-				<li><a href="#internships">Internships</a></li>
+				<li><a class="active" href="{% url 'primaryDashboard' %}">Home</a></li>
+				<li><a href="{% url 'custom_login' %}">Internships</a></li>
 				{% if User is None %}
 				<li>
 					<a href="custom_login"><i class="fa fa-fw fa-user"></i>Login</a>
@@ -221,7 +228,7 @@
 				this.classList.add('selected');
 			});
 		});
-	
+
 		const departmentData = {
 			'CSE': {
 				students_enrolled: 200,
@@ -247,7 +254,7 @@
 				ongoing: 50,
 				completed: 5
 			},
-			'CSC':{
+			'CSC': {
 				students_enrolled: 500,
 				internships: 70,
 				ongoing: 50,
@@ -291,7 +298,7 @@
 			}
 			// Add data for other departments as needed
 		};
-	
+
 		function displayDepartmentData(department, imageSource) {
 			const data = departmentData[department];
 			const statisticalDataDiv = document.getElementById('statisticalData');
@@ -306,11 +313,11 @@
 				<div style="clear:both ;"></div>
 			`;
 		}
-	
+
 		const cseButton = document.getElementById('cse');
-		cseButton.addEventListener('click', () => displayDepartmentData('CSE','cse_image.png'));
+		cseButton.addEventListener('click', () => displayDepartmentData('CSE', 'cse_image.png'));
 		const csdButton = document.getElementById('csd');
-		csdButton.addEventListener('click', () => displayDepartmentData('CSD','csd_image.png'));
+		csdButton.addEventListener('click', () => displayDepartmentData('CSD', 'csd_image.png'));
 		const caiButton = document.getElementById('cai');
 		caiButton.addEventListener('click', () => displayDepartmentData('CAI', 'cai.jpg'));
 		const cstButton = document.getElementById('cst');
@@ -318,19 +325,19 @@
 		const cscButton = document.getElementById('csc');
 		cscButton.addEventListener('click', () => displayDepartmentData('CSC', 'csc_image.png'));
 		const eceButton = document.getElementById('ece');
-		eceButton.addEventListener('click', () => displayDepartmentData('ECE','ece_image.png'));
+		eceButton.addEventListener('click', () => displayDepartmentData('ECE', 'ece_image.png'));
 		const eeeButton = document.getElementById('eee');
-		eeeButton.addEventListener('click', () => displayDepartmentData('EEE','eee_image.png'));
+		eeeButton.addEventListener('click', () => displayDepartmentData('EEE', 'eee_image.png'));
 		const mechButton = document.getElementById('mech');
-		mechButton.addEventListener('click', () => displayDepartmentData('MECH','mech_image.png'));
+		mechButton.addEventListener('click', () => displayDepartmentData('MECH', 'mech_image.png'));
 		const civilButton = document.getElementById('civil');
-		civilButton.addEventListener('click', () => displayDepartmentData('CIVIL','civil_image.png'));
+		civilButton.addEventListener('click', () => displayDepartmentData('CIVIL', 'civil_image.png'));
 		const mbaButton = document.getElementById('mba');
-		mbaButton.addEventListener('click', () => displayDepartmentData('MBA','mba_image.png'));
+		mbaButton.addEventListener('click', () => displayDepartmentData('MBA', 'mba_image.png'));
 		const mcaButton = document.getElementById('mca');
-		mcaButton.addEventListener('click', () => displayDepartmentData('MCA','mca_image.png'));
+		mcaButton.addEventListener('click', () => displayDepartmentData('MCA', 'mca_image.png'));
 	</script>
-	
+
 </body>
 
 </html>
