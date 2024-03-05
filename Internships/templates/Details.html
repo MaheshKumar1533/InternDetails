@@ -25,7 +25,6 @@
         body {
             background: white;
             width: 100%;
-            display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1px;
@@ -144,17 +143,14 @@
 
         .container {
             width: 80%;
-            max-width: 2000px;
             background-color: white;
             padding: 20px;
-            box-sizing: border-box;
+            /* box-sizing: border-box; */
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
-
         }
 
         .leftbar {
-            padding-top: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -163,9 +159,7 @@
             background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
             border-radius: 10px;
             width: 20%;
-            height: 500px;
-            margin-left: 2%;
-            overflow: auto;
+            height: 100%;
         }
 
         .back {
@@ -226,12 +220,10 @@
         }
 
         .rollnos {
-            /* overflow: auto; */
             background-color: rgba(245, 245, 220, 0.5);
             padding: 10px 0;
             border-radius: 5px;
-            /* margin-top: 15px; */
-            height: 45vh;
+            height: 60vh;
             align-items: center;
             width: 90%;
         }
@@ -435,8 +427,9 @@
 
         .rightbar {
             padding: 20px;
+            height: 100%;
             display: grid;
-            grid-template-columns: 55% 20%;
+            grid-template-columns: 55% auto;
             grid-gap: 10%;
             background-color: #726cf8;
             background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
@@ -456,8 +449,13 @@
             flex-direction: column;
             gap: 20px;
             overflow: auto;
-            height: 46vh;
+            height: 45vh;
             margin-top: 5px;
+        }
+
+        .internship img {
+            /* height: fit-content; */
+            height: 90%;
         }
 
         .add-internship-left {
@@ -484,7 +482,8 @@
             flex-direction: row;
             align-items: center;
             width: 100vw;
-            padding: 0;
+            height: 90vh;
+            padding: 10px;
         }
 
         #menu {
@@ -506,7 +505,7 @@
             height: 100%;
             width: 100%;
             padding: 10px 20px;
-            border-radius: 20px;
+            .right border-radius: 20px;
             transition: background-color 0.3s;
         }
 
@@ -591,91 +590,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="internships" id="internships">
-                        <!-- <div class="details internship rightbar">
-                            <div>
-                                <span class="title"><b>InternshipDetails</b></span>
-
-                                <div class="fields">
-                                    <div class="input-field">
-                                        <label>Company Name</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Project Name</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Domain</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Role</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Start Date</label>
-                                        <input type="date" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>End Date</label>
-                                        <input type="date" required>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <img src="{% static 'mitslogo.jpg' %}" alt="Certificate">
-                        </div>
-                        <div class="details internship rightbar">
-                            <div>
-                                <span class="title"><b>InternshipDetails</b></span>
-
-                                <div class="fields">
-                                    <div class="input-field">
-                                        <label>Company Name</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Project Name</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Domain</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Role</label>
-                                        <input type="text" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Start Date</label>
-                                        <input type="date" required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>End Date</label>
-                                        <input type="date" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <img src="{% static 'mitslogo.jpg' %}" alt="Certificate">
-                        </div> -->
-                        <div class="button">
-                            <button class="add-internship-button">+AddInternship</button>
-                        </div>
-
-                    </div>
+                    <div class="internships" id="internships"></div>
                 </div>
             </form>
         </div>
