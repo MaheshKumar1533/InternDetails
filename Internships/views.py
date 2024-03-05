@@ -73,10 +73,11 @@ def create_student(request):
     global User
     if request.method == 'POST':
         name = request.POST.get('name')
-        roll = request.POST.get('rollNo')
+        roll = str(str(request.POST.get('rollNo')).upper())
         year = request.POST.get('year')
         branch = User.dept
-        newstudent = student(name=name, rollno=roll, year=year, dept=branch)
+        section = request.POST.get('section')
+        newstudent = student(name=name, rollno=roll, year=year, dept=branch, section=section)
         newstudent.save()
         print("Student Created Successfully")
     return render(request, 'create_student.html', {"User": User})

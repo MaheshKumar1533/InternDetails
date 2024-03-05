@@ -373,23 +373,20 @@ input[type="search"] {
                     <input type="text" id="company" placeholder="Company Name" autocomplete="off">
                     <input type="text" id="domain" placeholder="Domain" autocomplete="off">
                     <select name="status" id="status" autocomplete="off">
-                        <option selected disabled>Status</option>
-                        <option value="All" selected>All</option>
+                        <option value="All" selected>Status</option>
                         <option value="Ongoing">Ongoing</option>
                         <option value="Completed">Completed</option>
                     </select>
                     <select name="year" id="year" autocomplete="off">
-                        <option selected diabled>Year</option>
-                        <option value="all" selected>All</option>
+                        <option value="all" selected>Year</option>
                         <option value="1">I</option>
                         <option value="2">II</option>
                         <option value="3">III</option>
                         <option value="4">IV</option>
                     </select>
                     <select name="section" id="section" autocomplete="off">
-                        <legend>Status</legend>
-                        <option selected disabled>Section</option>
-                        <option value="all" selected>All</option>
+                        <!-- <legend>Status</legend> -->
+                        <option value="all" selected>Section</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
@@ -515,7 +512,7 @@ input[type="search"] {
                 const company = document.getElementById('company').value.trim().toLowerCase();
                 const year = document.getElementById('year').value.trim().toLowerCase();
                 const section = document.getElementById('section').value.trim().toLowerCase();
-                const status = document.getElementById('status').value.trim().toLowerCase();
+                const intern_status = document.getElementById('status').value.trim().toLowerCase();
                 const domain = document.getElementById('domain').value.trim().toLowerCase();
 
 
@@ -576,10 +573,10 @@ input[type="search"] {
                     });
                 }
 
-                if (status !== "all") {
-                    console.log("Filtering by status:", status);
+                if (intern_status !== "all") {
+                    console.log("Filtering by status:", intern_status);
                     filteredData = filteredData.filter(student => {
-                        return student.status.toLowerCase() === status.toLowerCase();
+                        return student.current_status.toLowerCase() === intern_status.toLowerCase();
                     });
                 }
 
@@ -614,7 +611,7 @@ input[type="search"] {
                 document.getElementById('section').value = "";
                 document.getElementById('status').value = "";
                 document.getElementById('domain').value = "";
-                filterAndDisplayData()
+                displayData(studentData)
             }
             const studentData = [
                 {% for student in studentData %}
