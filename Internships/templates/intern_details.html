@@ -162,10 +162,12 @@
 
         form input[type="text"],
         form input[type="number"],
-        form input[type="date"] {
+        form input[type="date"],
+        form select {
             width: 98%;
             padding: 10px;
             margin-bottom: 20px;
+            background-color: white;
             border: 1px solid #ccc;
             border-radius: 20px;
             text-align: center;
@@ -299,23 +301,28 @@
             <label for="internshipName">Internship Name:</label>
             <input type="text" id="internshipName" name="internshipName" required>
 
-            <label for="type">Type:</label>
-            <input type="text" id="type" name="intern_type" required>
 
-            <!-- <label for="domain">Domain:</label>
-            <input type="text" id="domain" name="domain" required> -->
-
-            <!-- <label for="stipend">Stipend:</label>
-            <input type="text" id="stipend" name="stipend" required>
+            <label for="domain">Domain:</label>
+            <input type="text" id="domain" name="domain" required>
 
             <label for="projectName">Project Name:</label>
-            <input type="text" id="projectName" name="projectName" required> -->
+            <input type="text" id="projectName" name="projectName" required>
+
+            <label for="status">Status:</label>
+            <select name="status" id="status" required>
+
+                <option value="ongoing">ongoing</option>
+                <option value="completed">completed</option>
+            </select>
 
             <label for="sdate">Start Date:</label>
             <input type="date" id="sdate" name="sdate" required>
 
             <label for="edate">End Date:</label>
             <input type="date" id="edate" name="edate" required>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="intern_type" required>
 
             <label for="certificate">Certificate Link:</label>
             <input type="text" id="certificate" name="certificate" required>

@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 import pandas as pd
 
 User = None  #global user to handle the login through the dashboard
+User = None  #global user to handle the login through the dashboard
 #primary Dashboard without login
 def primaryDashboard(request):
     return render(request,"primaryDashboard.html")
@@ -94,8 +95,12 @@ def noAccess(request):
 def Details(request):
     global User
     Students = student.objects.filter(dept=User.dept)
+    # internships = internships.objects.filter(rollno=User.dept)
+    common_primary_keys = Students.values_list('pk', flat=True)
+    internship = internships.objects.filter(rollno__in=common_primary_keys)
     print(Students)
-    return render(request, "Details.html", context={'User': User, 'Students': Students, 'internships': internships})
+    print(internship)
+    return render(request, "Details.html", context={'User': User, 'Students': Students, 'internship': internship})
 
 
 
@@ -134,11 +139,15 @@ def addInternship(request):
         rollno = request.POST.get("rollno")
         currentStudent = student.objects.get(rollno=rollno)
         internshipName = request.POST.get("internshipName")
+        domain = request.POST.get("domain")
+        projectName=request.POST.get("projectName")
+        status=request.POST.get("status")
         sdate = request.POST.get("sdate")
         edate = request.POST.get("edate")
         intern_type = request.POST.get("intern_type")
         certificate = request.POST.get("certificate")
-        newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName,intern_type=intern_type ,sdate=sdate, edate=edate,certificate=certificate)
+        newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName, domain=domain, 
+        projectName=projectName, status=status, intern_type=intern_type, sdate=sdate, edate=edate,certificate=certificate)
         print(newInternship)
         newInternship.save()
         return redirect("ExclusiveDashboard")

@@ -35,4 +35,4 @@ class internships(models.Model):
     intern_type = models.CharField(max_length=30)
     certificate = models.CharField(max_length=255)
     def __str__(self):
-        return self.intern_type
+        return self.rollno.rollno
