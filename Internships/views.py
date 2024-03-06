@@ -69,6 +69,7 @@ def register_form(request):
         return redirect("custom_login",)
     return render(request,"facultyRegistrations.html")
 
+@login_required
 def create_student(request):
     global User
     if request.method == 'POST':
@@ -83,16 +84,11 @@ def create_student(request):
     return render(request, 'create_student.html', {"User": User})
 
 
-
-#student details dashboard
-def department(request):
-    return render(request, "Details.html")
-
 #no aceess for wrong aurthorisation
 def noAccess(request):
     return render(request, "noAccess.html")
 
-
+@login_required
 def Details(request):
     global User
     Students = student.objects.filter(dept=User.dept)
@@ -104,7 +100,7 @@ def Details(request):
     return render(request, "Details.html", context={'User': User, 'Students': Students, 'internship': internship})
 
 
-
+@login_required
 def bulk_data_input(request):
     if request.method == 'POST':
         form = BulkDataForm(request.POST, request.FILES)
@@ -134,7 +130,7 @@ student = Student.objects.get(rollno=rollno)
 internship = Internship.objects.create(student=student, internshipName='',intern_type="online/offline" sdate='2024-01-01', edate='2024-03-01',certificate="")
 
 """
-
+@login_required
 def addInternship(request):
     if request.method == "POST":
         rollno = request.POST.get("rollno")
@@ -222,7 +218,7 @@ def forgotPassword(request):
         EmailOutlook = ForgetUser.email
         print(ForgetUser.email)
         otp = AssignCode()
-        # send_otp(EmailOutlook, otp)
+        #send_otp(EmailOutlook, otp)
         request.session['otp']=otp
         print(f"{otp} saved & got")
         return redirect('otpPage')
