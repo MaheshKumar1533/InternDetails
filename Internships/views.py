@@ -100,7 +100,7 @@ def Details(request):
     return render(request, "Details.html", context={'User': User, 'Students': Students, 'internship': internship})
 
 
-@login_required
+
 def bulk_data_input(request):
     if request.method == 'POST':
         form = BulkDataForm(request.POST, request.FILES)
@@ -108,10 +108,12 @@ def bulk_data_input(request):
             df = pd.read_excel(request.FILES['file'])
             for index, row in df.iterrows():
                 try:
-                    user = student.objects.create(name=row['Name'], rollno=row['Roll No'], year=row['year'], dept=row['dept'])
+                    user = student.objects.create(name=row['Name'], rollno=row['Roll Number'], year=row['Year'],section=row['Section'],dept=row['Department'])
+                    user.save()
+                    print("Saving >>>")
                 except IntegrityError:
                     pass
-            return render(request, 'custom_login.html')
+            return redirect('custom_login')
     else:
         form = BulkDataForm()
     return render(request, 'bulk_update.html', {'form': form})
@@ -134,19 +136,23 @@ internship = Internship.objects.create(student=student, internshipName='',intern
 def addInternship(request):
     if request.method == "POST":
         rollno = request.POST.get("rollno")
-        currentStudent = student.objects.get(rollno=rollno)
-        internshipName = request.POST.get("internshipName")
-        domain = request.POST.get("domain")
-        projectName=request.POST.get("projectName")
-        status=request.POST.get("status")
-        sdate = request.POST.get("sdate")
-        edate = request.POST.get("edate")
-        intern_type = request.POST.get("intern_type")
-        certificate = request.POST.get("certificate")
-        newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName, domain=domain, 
-        projectName=projectName, status=status, intern_type=intern_type, sdate=sdate, edate=edate,certificate=certificate)
-        print(newInternship)
-        newInternship.save()
+        try:
+            currentStudent = student.objects.get(rollno=rollno)
+            internshipName = request.POST.get("internshipName")
+            domain = request.POST.get("domain")
+            projectName=request.POST.get("projectName")
+            status=request.POST.get("status")
+            sdate = request.POST.get("sdate")
+            edate = request.POST.get("edate")
+            intern_type = request.POST.get("intern_type")
+            certificate = request.POST.get("certificate")
+            newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName, domain=domain, 
+            projectName=projectName, status=status, intern_type=intern_type, sdate=sdate, edate=edate,certificate=certificate)
+            print(newInternship)
+            newInternship.save()
+        except student.DoesNotExist:
+            print("Student does not exist")
+            return redirect("custom_login")
         return redirect("ExclusiveDashboard")
     return render(request,'intern_details.html',{"User":User})
 
