@@ -147,8 +147,13 @@
     }
 
     .cont {
+        display: flex;
         width: 80vw;
+        min-height: 50vh;
+        align-items: center;
+        justify-content: center;
     }
+
 
     .box {
         /* width: 80%; Adjust the width as needed */
@@ -338,6 +343,9 @@ input[type="search"] {
     #username:hover {
         background-color: #333;
         cursor: pointer;
+    }
+    .stats{
+        font-size: 2em;
     }
 </style>
 
@@ -530,6 +538,7 @@ input[type="search"] {
                 <tbody>
                 </tbody>
             </table>`
+            document.getElementsByClassName('cont')[0].style.display = 'block';
                         displayData(studentData);
                     }
                     else {
@@ -546,14 +555,17 @@ input[type="search"] {
                         if (item.innerText == "MBA") imgsrc = "{% static 'MBA.png' %}"
                         if (item.innerText == "MCA") imgsrc = "{% static 'MCA.png' %}"
                         console.log(imgsrc)
-                        document.getElementById("cont").innerHTML = `<img src="${imgsrc}" alt="Image" style=" width: 30 %; float: left; margin - right: 10px; ">
-                        <div style = "margin-left: 10px;">
+                        document.getElementById("cont").innerHTML = `<img src="${imgsrc}" alt="Image" style=" width: 15%; float: left; margin - right: 10px; ">
+                        <div class="stats" style = "margin-left: 10px;">
                             <p>No of Students: ${departmentData[item.innerText].students_enrolled}</p>
                             <p>Status of Internships: ${departmentData[item.innerText].internships}</p>
                             <p>Ongoing Internships: ${departmentData[item.innerText].ongoing}</p>
                             <p>Completed Internships: ${departmentData[item.innerText].completed}</p>
 	        			</div >
                         <div style="clear:both ;"></div>`
+                        
+            document.getElementsByClassName('cont')[0].style.display = 'flex';
+
                     }
                 });
             });
@@ -685,7 +697,7 @@ input[type="search"] {
 
             console.log(studentData);
 
-            document.getElementsByClassName('item1')[0].click()
+            document.getElementById('{{ User.dept }}'.toLocaleLowerCase()).click()
         </script>
 </body>
 

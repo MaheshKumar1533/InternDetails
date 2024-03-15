@@ -1,14 +1,338 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #726cf8;
+            background-image: linear-gradient(315deg,
+                    #726cf8 0%,
+                    #e975a8 74%);
+        }
+
+        header {
+            position: sticky;
+            left: 0px;
+            top: 0px;
+            width: 100vw;
+        }
+
+        .name {
+            color: white;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .navbar {
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-width: 100vw;
+            z-index: 1000;
+            min-width: 100vw;
+            background-color: rgb(158, 43, 158);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-top: 0px;
+        }
+
+        .navbar img {
+            height: 40px;
+            /* width: auto; */
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 10px;
+        }
+
+        .navbar li {
+            display: inline-block;
+            margin: 0 7px;
+        }
+
+        .navbar li a {
+            float: left;
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar #mybtn {
+            color: white;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+        }
+
+        .navbar #mybtn .username {
+            margin-right: 5px;
+            font-size: 20px;
+        }
+
+        .navbar #mybtn svg {
+            width: 70px;
+            height: 35px;
+            fill: white;
+            cursor: pointer;
+        }
+
+        .navbar li a:hover {
+            background-color: #333;
+        }
+
+        .active {
+            background-color: rgba(212, 158, 212, 0.646);
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar ul {
+                margin-top: 10px;
+            }
+
+            .navbar li {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .navbar li a {
+                padding: 8px 15px;
+            }
+        }
+
+        .container {
+            max-width: 50vw;
+            height: max-content;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 4vh 0vw;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            justify-content: center;
+        }
+
+        .details form label {
+            justify-content: center;
+            display: inline-block;
+            padding: 5px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        button,
+        .bulkupdate {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+                Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 17px;
+            padding: 1em 2.7em;
+            font-weight: 500;
+            background: #1f2937;
+            color: white;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.6em;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #menu {
+            display: none;
+            position: absolute;
+            top: 8vh;
+            border-radius: 10px;
+            background-color: rgb(158, 43, 158);
+            transition: all 200ms ease-in-out;
+        }
+
+        #menu>li {
+            padding: 10px;
+            color: white;
+        }
+
+        #username {
+            color: white;
+            height: 100%;
+            width: 100%;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        #username:hover {
+            background-color: #333;
+            cursor: pointer;
+        }
+
+        .bulkupdate {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin: 10px;
+        }
+
+        .file-drop-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        /* .file-input {
+            display: none;
+        } */
+
+        .file-input-label {
+            display: block;
+            text-align: center;
+        }
+
+        .browse-link {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .file-drop-area.dragover {
+            border-color: #007bff;
+        }
+    </style>
 </head>
+
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %} {{ form.as_p}}
-        <button type="submit" class="submit">Submit</button>
-    </form>
+    <header>
+        <div class="navbar">
+            <img src="{% static 'mitslogo.jpg' %}" alt="" id="image">
+            <div class="name">MADANAPALLE INSTITUTE OF TECHNOLOGY AND SCIENCE</div>
+            <ul>
+                <li><a href="{% url 'ExclusiveDashboard' %}">Home</a></li>
+                <li><a href="{% url 'Details' %}">Students</a></li>
+                <li class="active" id="mybtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-person-circle" viewBox="0 0 16 16" id="icon">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg>
+                    <div id="username">{{ User.first_name }}</div>
+                    <ul id="menu">
+                        <li><a href="{% url 'create_student' %}">Add Students</a></li>
+                        <li><a href="{% url 'addInternship' %}">Add Internships</a></li>
+                        <li><a href="{% url 'custom_logout' %}">Logout </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Student Details</h1>
+        <div class="details">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <a class="bulkupdate" href="{% url 'create_student' %}">Single Student</a>
+    <script>
+        const username = document.getElementById('username');
+        const menu = document.getElementById('menu');
+        menu.style.display = "none";
+        username.addEventListener('click', () => {
+            if (menu.style.display == "none") {
+                menu.style.display = "block";
+            }
+            else {
+                menu.style.display = "none";
+            }
+        })
+        const fileInput = document.getElementById('fileInput');
+        const fileDropArea = document.querySelector('.file-drop-area');
+
+        fileDropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            fileDropArea.classList.add('dragover');
+        });
+
+        fileDropArea.addEventListener('dragleave', () => {
+            fileDropArea.classList.remove('dragover');
+        });
+
+        fileDropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            fileDropArea.classList.remove('dragover');
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            fileDropArea.classList.remove('dragover');
+        });
+    </script>
 </body>
+
 </html>

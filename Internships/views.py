@@ -9,18 +9,19 @@ import pandas as pd
 
 #primary Dashboard without login
 def primaryDashboard(request):
-    return render(request,"primaryDashboard.html")
+    return render(request,"primaryDashboard.html",{"depts":depts.objects.all().values()})
 
 @login_required #login id mandatory to access the exclusive dashboard
 def ExclusiveDashboard(request):
     User = request.user
+    User.dept
     # for internship in internships.objects.select_related('rollno').all():
     #     print(f"name:{internship.rollno.name}")
-    internships_with_students = internships.objects.select_related('rollno').all()
+    internships_with_students = internships.objects.select_related('rollno').filter(rollno__dept =User.dept).all()
     # for internship in internships_with_students:
     #     print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
     print(internships_with_students.values())
-    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values(),'studentData':internships.objects.select_related('rollno').all()})
+    return render(request, "ExclusiveDashboard.html", {"User":User, 'departments':depts.objects.all().values(),'studentData':internships_with_students})
 
 #Authentication
 def custom_login(request, context={'authentication':0}):
@@ -41,13 +42,14 @@ def custom_login(request, context={'authentication':0}):
         print("Failed")
 
 #logout view
+@login_required
 def custom_logout(request):
     logout(request) 
     return redirect("custom_login",)
 def register_form(request):
     if request.method == "POST":
         username = request.POST.get("username")
-        password = request.POST["password"].encode("utf-8")
+        password = request.POST["password"]
         email = request.POST.get("email")
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
@@ -97,10 +99,14 @@ def Details(request):
 
 
 
-def bulk_data_input(request):
+def bulkdata(request):
+    User = request.user
+    print("BULKDATA")
     if request.method == 'POST':
         form = BulkDataForm(request.POST, request.FILES)
+        print("POST")
         if form.is_valid():
+            print("From Valid")
             df = pd.read_excel(request.FILES['file'])
             for index, row in df.iterrows():
                 try:
@@ -108,11 +114,11 @@ def bulk_data_input(request):
                     user.save()
                     print("Saving >>>")
                 except IntegrityError:
-                    pass
+                    print("Exception Handled")
             return redirect('custom_login')
     else:
         form = BulkDataForm()
-    return render(request, 'bulk_update.html', {'form': form})
+    return render(request, 'bulk_update.html', {'form': form, 'User': User})
 
 
 """
@@ -130,6 +136,7 @@ internship = Internship.objects.create(student=student, internshipName='',intern
 """
 @login_required
 def addInternship(request):
+    User = request.user
     if request.method == "POST":
         rollno = request.POST.get("rollno")
         try:

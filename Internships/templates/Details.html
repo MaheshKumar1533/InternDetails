@@ -51,7 +51,7 @@
             left: 0;
             width: 100%;
             min-width: 100vw;
-            z-index: 1000;
+            /* z-index: 1000; */
             min-width: 100vw;
             background-color: rgb(158, 43, 158);
             display: flex;
@@ -145,6 +145,7 @@
             width: 80%;
             background-color: white;
             padding: 20px;
+            z-index: -1;
             /* box-sizing: border-box; */
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
@@ -278,7 +279,7 @@
 
         .container header::before {
             content: "";
-            position: absolute;
+            /* position: absolute; */
             left: 0;
             bottom: -2px;
             height: 3px;
@@ -296,7 +297,7 @@
         }
 
         .container form .form {
-            position: absolute;
+            /* position: absolute; */
             background-color: #fff;
             transition: 0.3s ease;
         }
@@ -492,6 +493,8 @@
             display: none;
             position: absolute;
             top: 8vh;
+            /* left: 0vw; */
+            z-index: 100;
             border-radius: 10px;
             background-color: rgb(158, 43, 158);
             transition: all 200ms ease-in-out;
