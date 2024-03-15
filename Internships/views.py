@@ -17,7 +17,7 @@ def ExclusiveDashboard(request):
     User.dept
     # for internship in internships.objects.select_related('rollno').all():
     #     print(f"name:{internship.rollno.name}")
-    internships_with_students = internships.objects.select_related('rollno').filter(rollno__dept =User.dept).all()
+    internships_with_students = internships.objects.select_related('rollno').filter(rollno__dept__dept =User.dept).all()
     # for internship in internships_with_students:
     #     print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
     print(internships_with_students.values())
@@ -89,7 +89,7 @@ def noAccess(request):
 @login_required
 def Details(request):
     User = request.user
-    Students = student.objects.filter(dept=User.dept)
+    Students = student.objects.filter(dept__dept=User.dept)
     # internships = internships.objects.filter(rollno=User.dept)
     common_primary_keys = Students.values_list('pk', flat=True)
     internship = internships.objects.filter(rollno__in=common_primary_keys)
