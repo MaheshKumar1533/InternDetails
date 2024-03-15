@@ -7,15 +7,13 @@ import smtplib
 from email.mime.text import MIMEText
 import pandas as pd
 
-User = None  #global user to handle the login through the dashboard
-User = None  #global user to handle the login through the dashboard
 #primary Dashboard without login
 def primaryDashboard(request):
     return render(request,"primaryDashboard.html")
 
 @login_required #login id mandatory to access the exclusive dashboard
 def ExclusiveDashboard(request):
-    global User
+    User = request.user
     # for internship in internships.objects.select_related('rollno').all():
     #     print(f"name:{internship.rollno.name}")
     internships_with_students = internships.objects.select_related('rollno').all()
@@ -44,9 +42,7 @@ def custom_login(request, context={'authentication':0}):
 
 #logout view
 def custom_logout(request):
-    logout(request)
-    global User
-    User = None
+    logout(request) 
     return redirect("custom_login",)
 def register_form(request):
     if request.method == "POST":
@@ -71,7 +67,7 @@ def register_form(request):
 
 @login_required
 def create_student(request):
-    global User
+    User = request.user
     if request.method == 'POST':
         name = request.POST.get('name')
         roll = str(str(request.POST.get('rollNo')).upper())
@@ -90,7 +86,7 @@ def noAccess(request):
 
 @login_required
 def Details(request):
-    global User
+    User = request.user
     Students = student.objects.filter(dept=User.dept)
     # internships = internships.objects.filter(rollno=User.dept)
     common_primary_keys = Students.values_list('pk', flat=True)
@@ -152,7 +148,7 @@ def addInternship(request):
             newInternship.save()
         except student.DoesNotExist:
             print("Student does not exist")
-            return redirect("custom_login")
+            return redirect("addInternship")
         return redirect("ExclusiveDashboard")
     return render(request,'intern_details.html',{"User":User})
 
@@ -194,18 +190,6 @@ def AssignCode():
 	otp = ri(1000,9999)
 	return otp
 
-# def verifyPassword(request,newPassword):
-#     global ForgetUser
-#     EmailOutlook = ForgetUser.email 
-#     otp = AssignCode()
-#     send_otp(EmailOutlook, otp)
-#     UserOtp = request.POST.get("otp")
-#     if otp==UserOtp:
-#         ForgetUser.update(password=newPassword)
-#         ForgetUser.save()
-#         print("Password Changed")
-#         return redirect("custom_login")
-
 
 from django.http import HttpResponse
 from django.contrib import messages
@@ -224,7 +208,7 @@ def forgotPassword(request):
         EmailOutlook = ForgetUser.email
         print(ForgetUser.email)
         otp = AssignCode()
-        #send_otp(EmailOutlook, otp)
+        send_otp(EmailOutlook, otp)
         request.session['otp']=otp
         print(f"{otp} saved & got")
         return redirect('otpPage')
