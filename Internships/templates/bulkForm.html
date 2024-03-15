@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Template Download</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.5s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .upload-container, .download-container {
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .upload-container h2, .download-container h2 {
+            margin-bottom: 20px;
+            color: #6c63ff;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff8f85;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .custom-file-upload:hover {
+            background-color: #e24d47;
+        }
+        button {
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #574ecc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="upload-container">
+            <h2>Upload Your File</h2>
+            <label for="fileInput" class="custom-file-upload">Choose File</label>
+            <input type="file" id="fileInput" accept=".csv, .xlsx, .xls" onchange="handleFileUpload(event)">
+            <p id="fileInfo"></p>
+        </div>
+        <div class="download-container">
+            <h2>Download Template</h2>
+            <button onclick="downloadTemplate()">Download</button>
+        </div>
+    </div>
+
+    <script>
+        function handleFileUpload(event) {
+            const fileInput = event.target;
+            const fileInfo = document.getElementById('fileInfo');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                const fileType = fileName.split('.').pop().toUpperCase();
+                fileInfo.innerText = `File uploaded: ${fileName} (${fileType})`;
+                downloadBtn.style.display = 'block';
+            } else {
+                fileInfo.innerText = '';
+                downloadBtn.style.display = 'none';
+            }
+        }
+
+        function downloadTemplate() {
+            // Provide link to download the template
+            window.location.href = "path/to/your/template/file.xlsx"; // Replace with the actual path to your template file
+        }
+    </script>
+</body>
+</html>

@@ -7,15 +7,13 @@ import smtplib
 from email.mime.text import MIMEText
 import pandas as pd
 
-User = None  #global user to handle the login through the dashboard
-User = None  #global user to handle the login through the dashboard
 #primary Dashboard without login
 def primaryDashboard(request):
     return render(request,"primaryDashboard.html")
 
 @login_required #login id mandatory to access the exclusive dashboard
 def ExclusiveDashboard(request):
-    global User
+    User = request.user
     # for internship in internships.objects.select_related('rollno').all():
     #     print(f"name:{internship.rollno.name}")
     internships_with_students = internships.objects.select_related('rollno').all()
@@ -44,9 +42,7 @@ def custom_login(request, context={'authentication':0}):
 
 #logout view
 def custom_logout(request):
-    logout(request)
-    global User
-    User = None
+    logout(request) 
     return redirect("custom_login",)
 def register_form(request):
     if request.method == "POST":
@@ -69,8 +65,9 @@ def register_form(request):
         return redirect("custom_login",)
     return render(request,"facultyRegistrations.html")
 
+@login_required
 def create_student(request):
-    global User
+    User = request.user
     if request.method == 'POST':
         name = request.POST.get('name')
         roll = str(str(request.POST.get('rollNo')).upper())
@@ -83,18 +80,13 @@ def create_student(request):
     return render(request, 'create_student.html', {"User": User})
 
 
-
-#student details dashboard
-def department(request):
-    return render(request, "Details.html")
-
 #no aceess for wrong aurthorisation
 def noAccess(request):
     return render(request, "noAccess.html")
 
-
+@login_required
 def Details(request):
-    global User
+    User = request.user
     Students = student.objects.filter(dept=User.dept)
     # internships = internships.objects.filter(rollno=User.dept)
     common_primary_keys = Students.values_list('pk', flat=True)
@@ -112,10 +104,12 @@ def bulk_data_input(request):
             df = pd.read_excel(request.FILES['file'])
             for index, row in df.iterrows():
                 try:
-                    user = student.objects.create(name=row['Name'], rollno=row['Roll No'], year=row['year'], dept=row['dept'])
+                    user = student.objects.create(name=row['Name'], rollno=row['Roll Number'], year=row['Year'],section=row['Section'],dept=row['Department'])
+                    user.save()
+                    print("Saving >>>")
                 except IntegrityError:
                     pass
-            return render(request, 'custom_login.html')
+            return redirect('custom_login')
     else:
         form = BulkDataForm()
     return render(request, 'bulk_update.html', {'form': form})
@@ -134,23 +128,27 @@ student = Student.objects.get(rollno=rollno)
 internship = Internship.objects.create(student=student, internshipName='',intern_type="online/offline" sdate='2024-01-01', edate='2024-03-01',certificate="")
 
 """
-
+@login_required
 def addInternship(request):
     if request.method == "POST":
         rollno = request.POST.get("rollno")
-        currentStudent = student.objects.get(rollno=rollno)
-        internshipName = request.POST.get("internshipName")
-        domain = request.POST.get("domain")
-        projectName=request.POST.get("projectName")
-        status=request.POST.get("status")
-        sdate = request.POST.get("sdate")
-        edate = request.POST.get("edate")
-        intern_type = request.POST.get("intern_type")
-        certificate = request.POST.get("certificate")
-        newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName, domain=domain, 
-        projectName=projectName, status=status, intern_type=intern_type, sdate=sdate, edate=edate,certificate=certificate)
-        print(newInternship)
-        newInternship.save()
+        try:
+            currentStudent = student.objects.get(rollno=rollno)
+            internshipName = request.POST.get("internshipName")
+            domain = request.POST.get("domain")
+            projectName=request.POST.get("projectName")
+            status=request.POST.get("status")
+            sdate = request.POST.get("sdate")
+            edate = request.POST.get("edate")
+            intern_type = request.POST.get("intern_type")
+            certificate = request.POST.get("certificate")
+            newInternship = internships.objects.create(rollno=currentStudent, internshipName=internshipName, domain=domain, 
+            projectName=projectName, status=status, intern_type=intern_type, sdate=sdate, edate=edate,certificate=certificate)
+            print(newInternship)
+            newInternship.save()
+        except student.DoesNotExist:
+            print("Student does not exist")
+            return redirect("addInternship")
         return redirect("ExclusiveDashboard")
     return render(request,'intern_details.html',{"User":User})
 
@@ -192,18 +190,6 @@ def AssignCode():
 	otp = ri(1000,9999)
 	return otp
 
-# def verifyPassword(request,newPassword):
-#     global ForgetUser
-#     EmailOutlook = ForgetUser.email 
-#     otp = AssignCode()
-#     send_otp(EmailOutlook, otp)
-#     UserOtp = request.POST.get("otp")
-#     if otp==UserOtp:
-#         ForgetUser.update(password=newPassword)
-#         ForgetUser.save()
-#         print("Password Changed")
-#         return redirect("custom_login")
-
 
 from django.http import HttpResponse
 from django.contrib import messages
@@ -222,7 +208,7 @@ def forgotPassword(request):
         EmailOutlook = ForgetUser.email
         print(ForgetUser.email)
         otp = AssignCode()
-        # send_otp(EmailOutlook, otp)
+        send_otp(EmailOutlook, otp)
         request.session['otp']=otp
         print(f"{otp} saved & got")
         return redirect('otpPage')
