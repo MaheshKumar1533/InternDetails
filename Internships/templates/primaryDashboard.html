@@ -147,7 +147,7 @@
 			align-items: center;
 			color: purple;
 			text-align: center;
-			justify-content: center;
+			justify-content: space-evenly;
 			align-items: center;
 			font-size: 1.5rem;
 			overflow: hidden;
@@ -171,7 +171,15 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			justify-content: space-evenly;
+			height: 80vh;
+
 		}
+
+		/* main img {
+			height: 10vh;
+			width: auto;
+		} */
 	</style>
 </head>
 
@@ -212,13 +220,6 @@
 			</div>
 		</div>
 		<div class="data" id="statisticalData"></div>
-		<div class="total">
-			<!-- <img
-					src="{% static 'mitslogo.jpg' %}"
-					alt="piechart"
-					class="piechart"
-				/> -->
-		</div>
 	</main>
 	<script>
 		const items = document.querySelectorAll('.item1');
@@ -303,7 +304,7 @@
 			const data = departmentData[department];
 			const statisticalDataDiv = document.getElementById('statisticalData');
 			statisticalDataDiv.innerHTML = `
-				<img src="${imageSource}" alt="${department} Image" style="width: 30%; height:30%; float:left; margin-right:10px;">
+				<img src="${imageSource}" alt="${department} Image" style=" width:30%; float:left; margin-right:10px;">
 				<div style="margin-left: 10px;">
 				<p>No of Students: ${data.students_enrolled}</p>
 				<p>Status of Internships: ${data.internships}</p>
@@ -315,27 +316,28 @@
 		}
 
 		const cseButton = document.getElementById('cse');
-		cseButton.addEventListener('click', () => displayDepartmentData('CSE', 'cse_image.png'));
+		cseButton.addEventListener('click', () => displayDepartmentData('CSE', "{% static 'CSE.png' %}"));
 		const csdButton = document.getElementById('csd');
-		csdButton.addEventListener('click', () => displayDepartmentData('CSD', 'csd_image.png'));
+		csdButton.addEventListener('click', () => displayDepartmentData('CSD', "{% static 'CSD.png' %}"));
 		const caiButton = document.getElementById('cai');
-		caiButton.addEventListener('click', () => displayDepartmentData('CAI', 'cai.jpg'));
+		caiButton.addEventListener('click', () => displayDepartmentData('CAI', "{% static 'CAI.png' %}"));
 		const cstButton = document.getElementById('cst');
-		cstButton.addEventListener('click', () => displayDepartmentData('CST', 'cst_image.png'));
+		cstButton.addEventListener('click', () => displayDepartmentData('CST', "{% static 'CST.png' %}"));
 		const cscButton = document.getElementById('csc');
-		cscButton.addEventListener('click', () => displayDepartmentData('CSC', 'csc_image.png'));
+		cscButton.addEventListener('click', () => displayDepartmentData('CSC', "{% static 'CSC.png' %}"));
 		const eceButton = document.getElementById('ece');
-		eceButton.addEventListener('click', () => displayDepartmentData('ECE', 'ece_image.png'));
+		eceButton.addEventListener('click', () => displayDepartmentData('ECE', "{% static 'ECE.png' %}"));
 		const eeeButton = document.getElementById('eee');
-		eeeButton.addEventListener('click', () => displayDepartmentData('EEE', 'eee_image.png'));
+		eeeButton.addEventListener('click', () => displayDepartmentData('EEE', "{% static 'EEE.png' %}"));
 		const mechButton = document.getElementById('mech');
-		mechButton.addEventListener('click', () => displayDepartmentData('MECH', 'mech_image.png'));
+		mechButton.addEventListener('click', () => displayDepartmentData('MECH', "{% static 'MECH.png' %}"));
 		const civilButton = document.getElementById('civil');
-		civilButton.addEventListener('click', () => displayDepartmentData('CIVIL', 'civil_image.png'));
+		civilButton.addEventListener('click', () => displayDepartmentData('CIVIL', "{% static 'CIVIL.png' %}"));
 		const mbaButton = document.getElementById('mba');
-		mbaButton.addEventListener('click', () => displayDepartmentData('MBA', 'mba_image.png'));
+		mbaButton.addEventListener('click', () => displayDepartmentData('MBA', "{% static 'MBA.png' %}"));
 		const mcaButton = document.getElementById('mca');
-		mcaButton.addEventListener('click', () => displayDepartmentData('MCA', 'mca_image.png'));
+		mcaButton.addEventListener('click', () => displayDepartmentData('MCA', "{% static 'MCA.png' %}"));
+		cseButton.click()
 	</script>
 
 </body>

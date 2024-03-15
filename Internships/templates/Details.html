@@ -375,7 +375,7 @@
             color: #333;
         }
 
-        .container form button,
+        .container form a,
         .backBtn {
             display: flex;
             align-items: center;
@@ -386,6 +386,7 @@
             border: none;
             outline: none;
             color: #fff;
+            text-decoration: none;
             border-radius: 5px;
             margin: 25px 0;
             background-color: #726cf8;
@@ -468,6 +469,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .button {
@@ -688,7 +690,7 @@
             );
             addinternship = document.createElement('div')
             addinternship.classList.add('button')
-            addinternship.innerHTML = `<button class="add - internship - button">+AddInternship</button>`
+            addinternship.innerHTML = `<a href="{% url 'addInternship' %}" class="add - internship - button">+AddInternship</a>`
             internships.appendChild(addinternship)
         });
         {% endfor %}
