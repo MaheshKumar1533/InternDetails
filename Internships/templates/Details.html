@@ -40,18 +40,11 @@
             width: 100vw;
         }
 
-        .name {
-            color: white;
-            font-size: 18px;
-            margin-left: 10px;
-        }
-
         .navbar {
             top: 0;
             left: 0;
             width: 100%;
             min-width: 100vw;
-            /* z-index: 1000; */
             min-width: 100vw;
             background-color: rgb(158, 43, 158);
             display: flex;
@@ -143,12 +136,8 @@
 
         .container {
             width: 80%;
+            height: 100%;
             background-color: white;
-            padding: 20px;
-            z-index: -1;
-            /* box-sizing: border-box; */
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
         }
 
         .leftbar {
@@ -242,249 +231,12 @@
             align-items: center;
         }
 
-        .submit {
-            font-size: 15px;
-            background-color: #e975a8;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            outline: none;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 150ms ease-in-out;
-            cursor: pointer;
-            align-self: center;
-            margin-top: auto;
-            margin-bottom: 20px;
-        }
-
-        .submit:hover {
-            box-shadow: 0 0 5px 5px rgba(70, 19, 4, 0.5),
-                0 0 10px 10px rgba(245, 245, 220, 0.7);
-            color: rgb(70, 19, 4);
-            background-color: #726cf8;
-            /* Background color */
-            background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
-            /* Background gradient */
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .container header {
-            position: relative;
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .container header::before {
-            content: "";
-            /* position: absolute; */
-            left: 0;
-            bottom: -2px;
-            height: 3px;
-            width: 27px;
-            border-radius: 8px;
-
-        }
-
-        .container form {
-            position: relative;
-            margin-top: 16px;
-            min-height: 490px;
-            background-color: #fff;
-            overflow: hidden;
-        }
-
-        .container form .form {
-            /* position: absolute; */
-            background-color: #fff;
-            transition: 0.3s ease;
-        }
-
-        .container form .form.second {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(100%);
-        }
-
-        form.secActive .form.second {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateX(0);
-        }
-
-        form.secActive .form.first {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(-100%);
-        }
-
-        .container form .title {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 16px;
-            font-weight: 500;
-            margin: 6px 0;
-            color: #333;
-        }
-
-        .container form .fields {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        form .fields .input-field {
-            display: flex;
-            width: calc(100% / 2 - 15px);
-            flex-direction: column;
-            margin: 4px 0;
-        }
-
-        .input-field label {
-            font-size: 12px;
-            font-weight: 500;
-            color: #2e2e2e;
-        }
-
-        .input-field input,
-        select {
-            outline: none;
-            font-size: 14px;
-            font-weight: 400;
-            color: #333;
-            border-radius: 5px;
-            border: 1px solid #aaa;
-            padding: 0 15px;
-            height: 42px;
-            margin: 8px 0;
-        }
-
-        .input-field input:focus,
-        .input-field select:focus {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
-        }
-
-        .input-field select,
-        .input-field input[type="date"] {
-            color: #707070;
-        }
-
-        .input-field input[type="date"]:valid {
-            color: #333;
-        }
-
-        .container form a,
-        .backBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 50px;
-            max-width: 200px;
-            width: 100%;
-            border: none;
-            outline: none;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 25px 0;
-            background-color: #726cf8;
-            background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
-            transition: all 0.3s linear;
-            cursor: pointer;
-        }
-
-        .container form .btnText {
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-
-
-        form button i,
-        form .backBtn i {
-            margin: 0 6px;
-        }
-
-        form .backBtn i {
-            transform: rotate(180deg);
-        }
-
-        form .buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        form .buttons button,
-        .backBtn {
-            margin-right: 14px;
-        }
-
-        img {
-            align-items: center;
-            width: 300px;
-        }
-
-        .rightbar {
-            padding: 20px;
-            height: 100%;
-            display: grid;
-            grid-template-columns: 55% auto;
-            grid-gap: 10%;
-            background-color: #726cf8;
-            background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
-            border-radius: 10px;
-        }
-
-        .internships::-webkit-scrollbar {
-            display: none;
-        }
-
-        .input-field {
-            margin-bottom: 20px;
-        }
-
-        .internships {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            overflow: auto;
-            height: 45vh;
-            margin-top: 5px;
-        }
-
-        .internship img {
-            /* height: fit-content; */
-            height: 90%;
-        }
-
-        .add-internship-left {
-            top: -20px;
-            left: 20px;
-            width: 150px;
-            height: 40px;
-            background-color: rgb(158, 43, 158);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .button {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         main {
             display: flex;
             flex-direction: row;
             align-items: center;
             width: 100vw;
+            gap: 3%;
             height: 90vh;
             padding: 10px;
         }
@@ -494,7 +246,6 @@
             position: absolute;
             top: 8vh;
             /* left: 0vw; */
-            z-index: 100;
             border-radius: 10px;
             background-color: rgb(158, 43, 158);
             transition: all 200ms ease-in-out;
@@ -517,6 +268,100 @@
         #username:hover {
             background-color: #333;
             cursor: pointer;
+        }
+
+        .studentDetails {
+            display: flex;
+            padding: 20px;
+            height: 40%;
+            font-size: 2em;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .column {
+            width: 100%;
+            font-size: 1em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .studetail {
+            width: 50%;
+        }
+
+        .internships {
+            height: 60%;
+            padding: 10px;
+            overflow: auto;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .internships::-webkit-scrollbar {
+            display: none;
+        }
+
+        .internship {
+            display: flex;
+            background: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
+            border-radius: 20px;
+            padding: 0px 20px;
+            color: white;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .interndetails {
+            width: 70%;
+            height: 50vh;
+            display: flex;
+            font-size: 1.4em;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .certificate {
+            width: 30%;
+        }
+
+        .certificate img {
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .newstudent {
+            font-size: 15px;
+            background-color: #e975a8;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            outline: none;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 150ms ease-in-out;
+            cursor: pointer;
+            align-self: center;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+
+        .addInternship {
+            background-image: linear-gradient(315deg, #726cf8 0%, #e975a8 74%);
+            transition: all 0.3s linear;
+            padding: 10px;
+            width: fit-content;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .addInternship a {
+            color: #fff;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -564,40 +409,23 @@
                     {% endfor %}
                 </div>
             </div>
-            <a class="submit" href="{% url 'create_student' %}">NEW STUDENT</a>
+            <a class="newstudent" href="{% url 'create_student' %}">NEW STUDENT</a>
         </div>
 
         <div class="container">
-            <form action="#">
-                <div class="form first">
-                    <div class="details student">
-                        <span class="title"><b>Student Details</b></span>
-
-                        <div class="fields">
-                            <div class="input-field">
-                                <label>Full Name</label>
-                                <input type="text" id="name" disabled>
-                            </div>
-
-                            <div class="input-field">
-                                <label>Roll Number</label>
-                                <input type="text" id="roll" disabled>
-                            </div>
-
-                            <div class="input-field">
-                                <label>Year</label>
-                                <input type="text" id="year" disabled>
-                            </div>
-
-                            <div class="input-field">
-                                <label>Branch</label>
-                                <input type="text" id="dept" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="internships" id="internships"></div>
+            <div class="studentDetails">
+                <h2>Student Details</h2>
+                <div class="column">
+                    <div class="studetail"></div>
+                    <div class="studetail"></div>
                 </div>
-            </form>
+                <div class="column">
+                    <div class="studetail"></div>
+                    <div class="studetail"></div>
+                </div>
+            </div>
+            <div class="internships" id="internships">
+            </div>
         </div>
 
     </main>
@@ -629,72 +457,46 @@
         },
         {% endfor %}
         ];
-        const name = document.getElementById('name')
-        const roll = document.getElementById('roll')
-        const year = document.getElementById('year')
-        const dept = document.getElementById('dept')
+        const studetails = document.getElementsByClassName("studetail")
+        console.log(studetails)
         {% for s in Students %}
         document.getElementById("{{ s.rollno }}").addEventListener('click', () => {
-            name.value = "{{ s.name }}"
-            roll.value = "{{ s.rollno }}"
-            year.value = "{{ s.year }}"
-            dept.value = "{{ s.dept }}"
-            filteredData = internshipdata.filter(intern => {
-                return intern.rollno === "{{ s.rollno }}"
+            console.log("{{ s.rollno }}")
+            studetails[0].innerText = "Name: " + "{{ s.name }}"
+            studetails[1].innerText = "Roll No: " + "{{ s.rollno }}"
+            studetails[2].innerText = "Year: " + "{{ s.year }}"
+            studetails[3].innerText = "Department: " + "{{ s.dept }}"
+            filtereddata = internshipdata.filter(detail => {
+                return detail.rollno == "{{ s.rollno }}"
             })
-            console.log(filteredData)
-            var internships = document.getElementById('internships')
+            const internships = document.getElementById('internships');
             internships.innerHTML = "";
-            filteredData.forEach(intern => {
-                internship = document.createElement('div')
-                internship.classList.add('internship')
-                internship.classList.add('details')
-                internship.classList.add('rightbar')
-                internship.innerHTML = `
-                            <div>
-                                <span class="title"><b>InternshipDetails</b></span>
-
-                                <div class="fields">
-                                    <div class="input-field">
-                                        <label>Company Name</label>
-                                        <input type="text" value="${intern.internshipName}" disabled required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Project Name</label>
-                                        <input type="text" value="${intern.projectName}" disabled required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Domain</label>
-                                        <input type="text" value="${intern.domain}" disabled required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Status</label>
-                                        <input type="text" value="${intern.intern_status}" disabled required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>Start Date</label>
-                                        <input type="date" value="${intern.sdate}" disabled required>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <label>End Date</label>
-                                        <input type="date" value="${intern.edate}" disabled required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a href="${intern.certificate}"><img src="{% static 'mitslogo.jpg' %}" alt="Certificate"></a>`
-                internships.appendChild(internship)
-            }
-            );
-            addinternship = document.createElement('div')
-            addinternship.classList.add('button')
-            addinternship.innerHTML = `<a href="{% url 'addInternship' %}" class="add - internship - button">+AddInternship</a>`
-            internships.appendChild(addinternship)
+            filtereddata.forEach(element => {
+                internships.innerHTML = `
+                <div class="internship">
+                    <div class="interndetails">
+                        <div class="column">
+                            <div class="studetail">Internship Name: ${element.internshipName}</div>
+                            <div class="studetail">Project Name: ${element.projectName}</div>
+                        </div>
+                        <div class="column">
+                            <div class="studetail">Domain: ${element.domain}</div>
+                            <div class="studetail">Status: ${element.intern_status}</div>
+                        </div>
+                        <div class="column">
+                            <div class="studetail">Start Date: ${element.sdate}</div>
+                            <div class="studetail">End Date: ${element.edate}</div>
+                        </div>
+                    </div>
+                    <div class="certificate">
+                        <img src="{% static 'mitslogo.jpg' %}" alt="Certificate">
+                    </div>
+                </div>`
+            });
+            const addInternship = document.createElement('div')
+            addInternship.classList.add('addInternship')
+            addInternship.innerHTML = `<a href="{% url 'addInternship' %}">+Add Student</a>`
+            internships.appendChild(addInternship);
         });
         {% endfor %}
     </script>
