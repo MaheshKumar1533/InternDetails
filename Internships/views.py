@@ -17,7 +17,7 @@ def ExclusiveDashboard(request):
     User.dept
     # for internship in internships.objects.select_related('rollno').all():
     #     print(f"name:{internship.rollno.name}")
-    internships_with_students = internships.objects.select_related('rollno').filter(rollno__dept__dept =User.dept).all()
+    internships_with_students = internships.objects.select_related('rollno').filter(rollno__dept =User.dept).all()
     # for internship in internships_with_students:
     #     print(f"Internship ID: {internship.internId}, Student Name: {internship.rollno.name}, Roll Number: {internship.rollno.rollno}")
     print(internships_with_students.values())
@@ -103,7 +103,7 @@ def bulkdata(request):
     User = request.user
     print("BULKDATA")
     if request.method == 'POST':
-        form = BulkDataForm(request.POST, request.FILES)
+        form = BulkDataForm(request.FILES)
         print("POST")
         if form.is_valid():
             print("From Valid")

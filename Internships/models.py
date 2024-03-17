@@ -20,7 +20,8 @@ class student(models.Model):
     rollno = models.CharField(max_length=30, primary_key=True)
     year = models.IntegerField()
     section = models.CharField(max_length=6)
-    dept = models.ForeignKey(depts, on_delete=models.CASCADE, related_name='students')
+    # dept = models.ForeignKey(depts, on_delete=models.CASCADE, related_name='students')
+    dept = models.CharField(max_length=7)
     
     def save(self, *args, **kwargs):
         created = not self.pk  # Check if the instance is being created
